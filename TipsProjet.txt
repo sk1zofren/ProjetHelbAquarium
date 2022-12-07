@@ -1,0 +1,10 @@
+* verifier a chaque etape que le projet run en bash (run.sh) pour eviter les mauvaise surprise
+* a l'examen on auras des questions théorique, c'est à dire que quand on utilise par exemple
+une classe abstraite ben on devra expliquer c'est quoi une classe abstraite ou une methode static
+ou autre, on doit savoir tout expliquer 
+* projet que en orienté objet !!!  
+* Quelques jours avant on doit regarder si on sais lancer le jeux sur la machine de l'école
+
+* faire une seul classe insecte et y mettre chaque insecte 
+* pour bloquer les poisson je peux utliser des threads.sleep
+
