@@ -69,7 +69,7 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addDeco(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             listDeco.add(new Decoration("Images/Deco.png"));
             numberOfDeco++;
         }
