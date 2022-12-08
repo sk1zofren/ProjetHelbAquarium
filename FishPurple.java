@@ -8,6 +8,12 @@ public class FishPurple extends Fish {
       super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3);
       bonusDeco = Decoration.getNDeco();
      
+
+    departureX =200;
+    departureY=200;
+    newTarget_X=departureX;
+    newTarget_Y=departureY;
+
      /* 
      move=1;
      if(vitesse >= vitesseMax){ // ne fonctionne pas encore bien car ne veux pas récuperer la valeur du nombre de deco
@@ -24,35 +30,22 @@ public class FishPurple extends Fish {
     super.update();
     chrono--;
     
-    target_x=200;
-    target_y=0;
+    target_x=newTarget_X;
+    target_y=newTarget_Y;
+System.out.println(target_x + " " + target_y);
 
-  for (int i = 0; i < Aquarium.listDeco.size(); i++) {
-    if(Aquarium.listDeco.get(i).getX() == FishPurple.this.getX() && FishPurple.this.getY() == Aquarium.listDeco.get(i).getY()){
-      FishPurple.this.setX(FishPurple.this.getX()+1);  
-      move =   (int) (1 + (Math.random() * (8)));
-    }
-  }
+ for (int i = 0; i < Aquarium.listFish.size(); i++) {
 
-  if(FishPurple.this.getX()==1 || FishPurple.this.getX()==2){ 
-    FishPurple.this.setX(FishPurple.this.getX()+3);
-    move =   (int) (1 + (Math.random() * (8)));     
-  }
+  if(Aquarium.listFish.get(i).getId()==4 && Aquarium.listFish.get(i).target_x == FishPurple.this.pos_x && Aquarium.listFish.get(i).target_y == FishPurple.this.pos_y ){
 
-  if(FishPurple.this.getX() == Aquarium.getTaille()-1 || FishPurple.this.getX() == Aquarium.getTaille()-2  ){
-    FishPurple.this.setX(FishPurple.this.getX()-3);  
-    move =   (int) (1 + (Math.random() * (8)));       
-  }
-    
-  if(FishPurple.this.getY() == 1 || FishPurple.this.getY() == 2  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-    FishPurple.this.setY(FishPurple.this.getY()+3);  
-    move =   (int) (1 + (Math.random() * (8)));      
-  }
+newTarget_X = 0;
+newTarget_Y = 0;
 
-  if(FishPurple.this.getY() == Aquarium.getTaille()-1 || FishPurple.this.getY() == Aquarium.getTaille()-2  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-    FishPurple.this.setY(FishPurple.this.getY()-3);  
-    move =   (int) (1 + (Math.random() * (8)));          
   }
+  
+ }
+
+  
       
   for (int i = 0; i < Aquarium.listFishRed.size(); i++) {
     if(Aquarium.listFishRed.get(i).getX() == FishPurple.this.getX() && FishPurple.this.getY() < Aquarium.listFishRed.get(i).getY()    ){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend
@@ -74,31 +67,8 @@ public class FishPurple extends Fish {
 
 
 
-  if(FishPurple.this.getX() == 1  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-  FishPurple.this.setX(FishPurple.this.getX()+1);  // il va reculer pour eviter qu'il repete l'operation a l'infini car il va toucher continuellemnt le bord
-      move =   (int) (1 + (Math.random() * (8))); 
-      
-  }
-
-  if(FishPurple.this.getX() == Aquarium.getTaille()-1  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-      FishPurple.this.setX(FishPurple.this.getX()-1);  
-          move =   (int) (1 + (Math.random() * (8))); 
-          
-          
-      }
   
-      if(FishPurple.this.getY() == 1  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-          FishPurple.this.setY(FishPurple.this.getY()+1);  
-              move =   (int) (1 + (Math.random() * (8))); 
-              
-          }
-
-          if(FishPurple.this.getY() == Aquarium.getTaille()-1  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-              FishPurple.this.setY(FishPurple.this.getY()-1);  
-                  move =   (int) (1 + (Math.random() * (8))); 
-                  
-                  
-              }
+  
 
 
 

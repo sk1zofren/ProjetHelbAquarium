@@ -9,8 +9,8 @@ import javax.swing.Timer;
 
 public class Aquarium extends JPanel implements ActionListener {
 
-    private final static int LENGHT = 600; // longueur de l'Aquarium
-    private final static int HEIGHT = 500; // largeur de l'Aquarium 
+    private final static int LENGHT = 500; // longueur de l'Aquarium
+    private final static int HEIGHT = 600; // largeur de l'Aquarium 
     private final static int DOT_SIZE = 1;  // la taille des petits carreaux de la grille, chaque pas 
     private final static int ALL_DOTS = 900; // le nombre total de petits carreux de la grille
     private static int DELAY = 20; // nombre de miliseconde ecolouer entre chaque action 
@@ -51,7 +51,7 @@ public class Aquarium extends JPanel implements ActionListener {
         }else if(temperature.equals("hard")){
             setBackground(Color.green);
         }else{
-            setBackground(Color.black);
+            setBackground(Color.gray);
         } 
         setFocusable(true);
         setPreferredSize(new Dimension(LENGHT, HEIGHT));
@@ -61,16 +61,16 @@ public class Aquarium extends JPanel implements ActionListener {
     private void addFish(){   
         for (int i = 0; i < 1; i++) {
 
-            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0));
+            //listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0));
             listFish.add(new FishRed("red",100, "Images/FishRed.png",0)); 
             //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
+            listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
         }
     }
 
     private void addDeco(){
-        for (int i = 0; i < 9; i++) {
-            listDeco.add(new Decoration("Images/Deco.png"));
+        for (int i = 0; i < 20; i++) {
+            listDeco.add(new Decoration("Images/rec.png"));
             numberOfDeco++;
         }
     }

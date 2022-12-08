@@ -2,14 +2,19 @@ public class FishOrange extends Fish {
 
   private static int chrono =20;
   private static int chrono2 =90;
-  private static int departureX =400;
-  private static int departureY = 400;
+ 
 
   public FishOrange(String colors, int vitesse, String nameImage,int id) {
     super("orange", vitesse, "Image/fishOrange.png",1);
+
+    // TODO demander au prof si constante magique
     
+    departureX =200;
+    departureY=480;
+
     newTarget_X=departureX;
     newTarget_Y=departureY;
+   
 
     if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
       vitesse = vitesseMax;
@@ -25,10 +30,13 @@ public class FishOrange extends Fish {
     super.update();
     target_x=newTarget_X;
     target_y=newTarget_Y;
-    
+  
+  // Quand le poisson Orange touche un obstacle, il change direction //TODO regarder la methode dans fish puis revenir
+      
   if(touchOb){
-    newTarget_X =0;
-    newTarget_Y = 0;
+    newTarget_X =(int) (1 + (Math.random() * (Aquarium.getHeights())));         
+    newTarget_Y = (int) (1 + (Math.random() * (Aquarium.getLenghts())));
+    touchOb =false;
   }
 
     chrono--;

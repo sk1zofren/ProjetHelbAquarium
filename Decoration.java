@@ -15,7 +15,7 @@ public class Decoration {
 
     public Decoration(String nameImage) {
        
-       ImageIcon iib = new ImageIcon("Image/Deco.png");
+       ImageIcon iib = new ImageIcon("Image/Dec.png");
        DecoImage = iib.getImage();
        x = (int) (Math.random()*Aquarium.getTaille()-1);
         y = (int) (Math.random()*Aquarium.getTaille()-1);
@@ -59,6 +59,7 @@ public class Decoration {
 
        public void update(){
 
+       
        }
 
 }

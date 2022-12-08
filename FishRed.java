@@ -2,8 +2,8 @@ public class FishRed extends Fish {
 
   public static int chrono=20; // nombre de temps du bonus de vitesse
   public static int chrono2=20;
-  private static int departureX =0;
-  private static int departureY = 400;
+  private static int departureX =100;
+  private static int departureY = 100;
  
 
   public FishRed(String colors, int speedMax, String nameImage,int id) {
@@ -29,27 +29,22 @@ public class FishRed extends Fish {
     target_x=newTarget_X;
     target_y=newTarget_Y;
 
+    // TODO fonctionne mais quand il mange 1 seul proie, il s'arrete
+    for (int i = 0; i < Aquarium.listFishPrey.size(); i++) {
+       
+      newTarget_X = Aquarium.listFishPrey.get(i).pos_x;
+      newTarget_Y = Aquarium.listFishPrey.get(i).pos_y;
 
+      if(pos_x == Aquarium.listFishPrey.get(i).pos_x && pos_y == Aquarium.listFishPrey.get(i).pos_y ){
+      Fish fish = Aquarium.listFishPrey.get(i);
+        Aquarium.removeFromListFish(fish);  
+      }
 
-    if(FishRed.this.getX()==1 || FishRed.this.getX()==2){ 
-      FishRed.this.setX(FishRed.this.getX()+3);
-      move =   (int) (1 + (Math.random() * (8)));     
-    }
-
-    if(FishRed.this.getX() == Aquarium.getTaille()-1 || FishRed.this.getX() == Aquarium.getTaille()-2  ){
-      FishRed.this.setX(FishRed.this.getX()-3);  
-      move =   (int) (1 + (Math.random() * (8)));       
-    }
       
-    if(FishRed.this.getY() == 1 || FishRed.this.getY() == 2  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-      FishRed.this.setY(FishRed.this.getY()+3);  
-      move =   (int) (1 + (Math.random() * (8)));      
     }
 
-    if(FishRed.this.getY() == Aquarium.getTaille()-1 || FishRed.this.getY() == Aquarium.getTaille()-2  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
-      FishRed.this.setY(FishRed.this.getY()-3);  
-      move =   (int) (1 + (Math.random() * (8)));          
-    }
+
+    
     
     if(Aquarium.temperature.equals("cold")){
       vitesse = 1;
@@ -59,13 +54,8 @@ public class FishRed extends Fish {
       vitesse = 4;
     }
     
-    for (int i = 0; i < Aquarium.listDeco.size(); i++) {
-      if(Aquarium.listDeco.get(i).getX() == FishRed.this.getX() && FishRed.this.getY() == Aquarium.listDeco.get(i).getY()){
-        FishRed.this.setX(FishRed.this.getX()+1);  
-        move =   (int) (1 + (Math.random() * (8)));
-      }
-    }
     // petit soucis, le poisson rouge apres avoir manger, ne sis plus ou il doit aller et aussi il ne sais pas encore aller chercher en diagonal les proies  
+    /* 
     for (int i = 0; i < Aquarium.listFishPrey.size(); i++) {
   
       if(Aquarium.listFishPrey.get(i).getX()== FishRed.this.getX() && FishRed.this.getY() < Aquarium.listFishPrey.get(i).getY()    ){ // si poisson Red est dans axe ordonee haut poisson mauve alors poisson mauve descend
@@ -90,6 +80,7 @@ public class FishRed extends Fish {
         move =  (int) (1 + (Math.random() * (8)));     
       }
     }
+    */
 
     for (int i = 0; i < Aquarium.listButterfly.size(); i++) {
       if(FishRed.this.getX() == Aquarium.listButterfly.get(i).getX() && Aquarium.listButterfly.get(i).getY() == FishRed.this.getY()){ // si poisson Red est dans axe ordonee haut poisson mauve alors poisson mauve descend 

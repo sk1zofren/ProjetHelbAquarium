@@ -17,7 +17,10 @@ public abstract class Fish  {
     protected int target_y ; // coordoneé Y de la cible du poisson
     protected int newTarget_X;// nouvelle coordoneé X de la cible du poisson
     protected int newTarget_Y;// nouvelle coordoneé Y de la cible du poisson
-    protected boolean touchOb=false;
+    protected boolean touchOb=false; // boolean qui s'active si on touche un bord
+    protected int departureX;
+    protected int departureY;
+    
 
     public Fish(String colors , int speedMax, String nameImage,int id) {
 
@@ -94,44 +97,46 @@ public abstract class Fish  {
         // objets qu'il ne doit pas toucher comme les obstacles
 
         boolean res = true ;
-        if (pos_y >= Aquarium.getHeights()) {
+        if (pos_y >= Aquarium.getHeights()-2) {
         res = false;
         }
 
-        if (pos_y < 0) {
+        if (pos_y < 2) {
         res = false;
         }
         
-        // TODO demander au prof si ce code est de la duplication de code
+        // TODO demander au prof si ce code est de la duplication de code à et vérifier si c'est assez précis et grand comme obstacle
         for (int j = 0; j < Aquarium.listDeco.size(); j++) {
 
-        if (  pos_y >= Aquarium.listDeco.get(j).getY()-10 && pos_y <= Aquarium.listDeco.get(j).getY()+10 && pos_x == Aquarium.listDeco.get(j).getX()+10) {
-            res = false;
-            touchOb = true;
+            if (  pos_y >= Aquarium.listDeco.get(j).getY()-10 && pos_y <= Aquarium.listDeco.get(j).getY()+10 && pos_x == Aquarium.listDeco.get(j).getX()+10) {
+                res = false;
+                touchOb = true;
+            }
+    
+            if (  pos_y >= Aquarium.listDeco.get(j).getY()-10 && pos_y <= Aquarium.listDeco.get(j).getY()+10 && pos_x == Aquarium.listDeco.get(j).getX()-10) {
+                res = false;
+                touchOb =true;
+            }
+    
+            if (  pos_x >= Aquarium.listDeco.get(j).getX()-10 && pos_x <= Aquarium.listDeco.get(j).getX()+10 && pos_y == Aquarium.listDeco.get(j).getY()+10) {
+                res = false;
+                touchOb =true;
+            }
+    
+            if (  pos_x >= Aquarium.listDeco.get(j).getX()-10 && pos_x <= Aquarium.listDeco.get(j).getX()+10 && pos_y == Aquarium.listDeco.get(j).getY()-10) {
+                res = false;
+                touchOb =true;
+            }
+    
+    
+
         }
 
-        if (  pos_y >= Aquarium.listDeco.get(j).getY()-10 && pos_y <= Aquarium.listDeco.get(j).getY()+10 && pos_x == Aquarium.listDeco.get(j).getX()-10) {
-            res = false;
-            touchOb =true;
-        }
-
-        if (  pos_x >= Aquarium.listDeco.get(j).getX()-10 && pos_x <= Aquarium.listDeco.get(j).getX()+10 && pos_y == Aquarium.listDeco.get(j).getY()+10) {
-            res = false;
-            touchOb =true;
-        }
-
-        if (  pos_x >= Aquarium.listDeco.get(j).getX()-10 && pos_x <= Aquarium.listDeco.get(j).getX()+10 && pos_y == Aquarium.listDeco.get(j).getY()-10) {
-            res = false;
-            touchOb =true;
-        }
-
-        }
-
-        if (pos_x >= Aquarium.getLenghts()) {
+        if (pos_x >= Aquarium.getLenghts()-2) {
         res = false;
         }
 
-        if (pos_x < 0) {
+        if (pos_x < 2) {
         res = false;
         }
         return res;
