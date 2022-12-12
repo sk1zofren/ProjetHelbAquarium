@@ -26,17 +26,17 @@ public class FishRed extends Fish  {
         Fish fish = Aquarium.listFishPrey.get(j);
         Aquarium.removeFromListFish(fish);
         Aquarium.removeFromListFishPray(fish);   
-         //pur le thread 
          recherch();
       }
     } 
   }
 
   public void recherch(){
+    double distanceDepart= Integer.MAX_VALUE;
     for (int j = 0; j < Aquarium.listFishPrey.size(); j++) {  
       int x_dist = Aquarium.listFishPrey.get(j).pos_x-pos_x;
       int y_dist = Aquarium.listFishPrey.get(j).pos_y-pos_y; 
-      double distanceDepart= Integer.MAX_VALUE;
+     
       double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2));
       if(distance < distanceDepart){  
         newTarget_X = Aquarium.listFishPrey.get(j).pos_x;
@@ -49,11 +49,12 @@ public class FishRed extends Fish  {
   @Override
   public  void update(){
     super.update();
-    chrono--;
+    //chrono--;
     target_x=newTarget_X;
     target_y=newTarget_Y;   
     recherch();
     manger(); 
+  
     
     
 /* 

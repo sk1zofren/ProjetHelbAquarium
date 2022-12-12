@@ -61,11 +61,22 @@ public class Aquarium extends JPanel implements ActionListener {
     private void addFish(){   
         for (int i = 0; i < 1; i++) {
 
-            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0));
-            listFish.add(new FishRed("red",100, "Images/FishRed.png",0)); 
+            //listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0));
+            //listFish.add(new FishRed("red",100, "Images/FishRed.png",0)); 
+            
+            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
+            
+            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
+            //listFish.add(new FishRed("red",100, "Images/FishRed.png",0));
+            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
+            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
+            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
+            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
             listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
-            listFish.add(new FishRed("red",100, "Images/FishRed.png",0));
+            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
+            
+            
+            
             
         }
     }
@@ -127,7 +138,7 @@ public class Aquarium extends JPanel implements ActionListener {
 
     public static ArrayList<Fish> getlistFishFriend() {
         for (int i = 0; i < listFish.size(); i++) {
-            if(listFish.get(i).getId()!=4 && listFish.get(i).getId()!=1){
+            if(listFish.get(i).getId()!=4 && listFish.get(i).getId()!=1 ){
                 listFishFriend.add(listFish.get(i));               
             } 
         }

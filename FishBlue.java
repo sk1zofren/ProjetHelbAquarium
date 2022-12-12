@@ -3,15 +3,15 @@ public class FishBlue extends Fish {
    // ce poisson de base a une vitesse plus grande donc avev le bonus c'est encore plus
 private static int chrono=20;
 private static int chrono2=20;
+private boolean pret=true;
 
-    public FishBlue(String colors, int speedMax, String nameImage,int id) {
-        super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2);
-        departureX =50;
-    departureY=50;
-    newTarget_X=departureX;
-    newTarget_Y=departureY;
+  public FishBlue(String colors, int speedMax, String nameImage,int id) {
+    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2);
+    newTarget_X=0;
+    newTarget_Y=0;
+
         
-        move =1;
+       
         vitesse =3;
         if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
 
@@ -20,18 +20,34 @@ private static int chrono2=20;
        
     }
       
-
-       
+public void ami(){
+  double distanceDepart= Integer.MAX_VALUE;
+  for (int i = 0; i < Aquarium.listFishFriend.size(); i++) {
+    int x_dist = Aquarium.listFishFriend.get(i).pos_x-pos_x;
+    int y_dist = Aquarium.listFishFriend.get(i).pos_y-pos_y;  
+    double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
+    if(distance < distanceDepart && Aquarium.listFishFriend.get(i).pos_x != pos_x ){  
+      newTarget_X = Aquarium.listFishFriend.get(i).pos_x;
+      newTarget_Y = Aquarium.listFishFriend.get(i).pos_y;
+      distanceDepart = distance;
+      System.out.println(newTarget_X + "//////" + distanceDepart);
+    }  
+  }
+}  
 
 @Override
 public  void update(){
-    super.update();
-    
+    super.update(); 
+
     target_x=newTarget_X;
     target_y=newTarget_Y;
-chrono--;
+    if(pret){
+ ami();
+    }
+//chrono--;
 
- 
+
+ /* 
  for (int i = 0; i < Aquarium.listDeco.size(); i++) {
     if(Aquarium.listDeco.get(i).getX() == FishBlue.this.getX() && FishBlue.this.getY() == Aquarium.listDeco.get(i).getY()){
         FishBlue.this.setX(FishBlue.this.getX()+1);  
@@ -39,9 +55,9 @@ chrono--;
     }
 }
 
-
+*/
     //System.out.println(Aquarium.getlistFishFriend().get(3).getMove());
-
+/* 
     if(FishBlue.this.getX()==1 || FishBlue.this.getX()==2){ 
       FishBlue.this.setX(FishBlue.this.getX()+3);
       move =   (int) (1 + (Math.random() * (8)));     
@@ -61,7 +77,7 @@ chrono--;
       FishBlue.this.setY(FishBlue.this.getY()-3);  
       move =   (int) (1 + (Math.random() * (8)));          
     }
-
+/* 
     for (int i = 0; i < Aquarium.listFishFriend.size(); i++) {
 
     if(Aquarium.listFishFriend.get(i).getX() == FishBlue.this.getX() && FishBlue.this.getY() < Aquarium.listFishFriend.get(i).getY()    ){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend
@@ -82,12 +98,12 @@ chrono--;
       }
 
     }  
-
+*/
 
 
     // pour eviter les bords 
     // si le poisson touche un bord, doit il rester bloquer ?
-
+/* 
     if(FishBlue.this.getX() == 1 || FishBlue.this.getX() == 2  ){ // le 1 c'est pour eviter qu'il rentre dans l'ecran
     FishBlue.this.setX(FishBlue.this.getX()+3);  // il va reculer pour eviter qu'il repete l'operation a l'infini car il va toucher continuellemnt le bord
        move =   (int) (1 + (Math.random() * (8))); 
@@ -189,7 +205,7 @@ chrono--;
             }
 
     
-    
+*/    
     }
 
 

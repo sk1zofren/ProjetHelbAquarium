@@ -18,8 +18,8 @@ public abstract class Fish  {
     protected int newTarget_X;// nouvelle coordoneé X de la cible du poisson
     protected int newTarget_Y;// nouvelle coordoneé Y de la cible du poisson
     protected boolean touchOb=false; // boolean qui s'active si on touche un bord
-    protected int departureX;
-    protected int departureY;
+    protected int departureX; // TODO risque d'eter supprimer car non utiliser
+    protected int departureY; // TODO risque d'eter supprimer car non utiliser
     
 
     public Fish(String colors , int speedMax, String nameImage,int id) {

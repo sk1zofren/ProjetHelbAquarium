@@ -6,14 +6,9 @@ public class FishOrange extends Fish {
 
   public FishOrange(String colors, int vitesse, String nameImage,int id) {
     super("orange", vitesse, "Image/fishOrange.png",1);
-
-    // TODO demander au prof si constante magique
     
-    departureX =200;
-    departureY=480;
-
-    newTarget_X=departureX;
-    newTarget_Y=departureY;
+    newTarget_X=0;
+    newTarget_Y=0;
    
 
     if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
