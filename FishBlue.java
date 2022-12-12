@@ -8,10 +8,7 @@ private boolean pret=true;
   public FishBlue(String colors, int speedMax, String nameImage,int id) {
     super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2);
     newTarget_X=0;
-    newTarget_Y=0;
-
-        
-       
+    newTarget_Y=0;   
         vitesse =3;
         if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
 
@@ -38,24 +35,15 @@ public void ami(){
 @Override
 public  void update(){
     super.update(); 
-
     target_x=newTarget_X;
     target_y=newTarget_Y;
     if(pret){
- ami();
+    ami();
     }
 //chrono--;
 
 
- /* 
- for (int i = 0; i < Aquarium.listDeco.size(); i++) {
-    if(Aquarium.listDeco.get(i).getX() == FishBlue.this.getX() && FishBlue.this.getY() == Aquarium.listDeco.get(i).getY()){
-        FishBlue.this.setX(FishBlue.this.getX()+1);  
-        move =   (int) (1 + (Math.random() * (8)));
-    }
-}
-
-*/
+ 
     //System.out.println(Aquarium.getlistFishFriend().get(3).getMove());
 /* 
     if(FishBlue.this.getX()==1 || FishBlue.this.getX()==2){ 
