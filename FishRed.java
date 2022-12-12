@@ -1,18 +1,18 @@
-public class FishRed extends Fish {
+import java.sql.Time;
+import javax.swing.text.Position;
+
+public class FishRed extends Fish  {
 
   public static int chrono=20; // nombre de temps du bonus de vitesse
-  public static int chrono2=20;
-  private static int departureX =100;
-  private static int departureY = 100;
+  public static int chrono2=20; 
  
-
   public FishRed(String colors, int speedMax, String nameImage,int id) {
-
     super("red", Aquarium.getSpeed(), "Image/FishRed.png",4);
-    newTarget_X=departureX;
-    newTarget_Y=departureY;
+    newTarget_X=0; // au debut mon poisson va au il veut (null )
+    newTarget_Y=0; // au debut mon poisson va au il veut ( null)
+    
     if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
-    vitesse = vitesseMax;
+      vitesse = vitesseMax;
     }
   }
 
@@ -20,30 +20,58 @@ public class FishRed extends Fish {
     return FishRed.super.getColors();
   }
 
+  public void manger(){
+    for (int j = 0; j < Aquarium.listFishPrey.size(); j++) {  
+      if(pos_x == Aquarium.listFishPrey.get(j).pos_x && pos_y == Aquarium.listFishPrey.get(j).pos_y ){
+        Fish fish = Aquarium.listFishPrey.get(j);
+        Aquarium.removeFromListFish(fish);
+        Aquarium.removeFromListFishPray(fish);   
+         //pur le thread 
+         recherch();
+      }
+    } 
+  }
+
+  public void recherch(){
+    for (int j = 0; j < Aquarium.listFishPrey.size(); j++) {  
+      int x_dist = Aquarium.listFishPrey.get(j).pos_x-pos_x;
+      int y_dist = Aquarium.listFishPrey.get(j).pos_y-pos_y; 
+      double distanceDepart= Integer.MAX_VALUE;
+      double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2));
+      if(distance < distanceDepart){  
+        newTarget_X = Aquarium.listFishPrey.get(j).pos_x;
+        newTarget_Y = Aquarium.listFishPrey.get(j).pos_y;
+        distanceDepart = distance;     
+      }  
+    }
+  }
 
   @Override
   public  void update(){
     super.update();
     chrono--;
-
     target_x=newTarget_X;
-    target_y=newTarget_Y;
+    target_y=newTarget_Y;   
+    recherch();
+    manger(); 
+    
+    
+/* 
+   if(pause){
 
-    // TODO fonctionne mais quand il mange 1 seul proie, il s'arrete
-    for (int i = 0; i < Aquarium.listFishPrey.size(); i++) {
-       
-      newTarget_X = Aquarium.listFishPrey.get(i).pos_x;
-      newTarget_Y = Aquarium.listFishPrey.get(i).pos_y;
-
-      if(pos_x == Aquarium.listFishPrey.get(i).pos_x && pos_y == Aquarium.listFishPrey.get(i).pos_y ){
-      Fish fish = Aquarium.listFishPrey.get(i);
-        Aquarium.removeFromListFish(fish);  
-      }
-
+    Thread.currentThread();
+            try {
+              Thread.sleep(5000);
+            } catch (InterruptedException e) {
+              
+              e.printStackTrace();
+            }
+            pause=false;
+   }  
+    */   
       
-    }
-
-
+    
+  
     
     
     if(Aquarium.temperature.equals("cold")){

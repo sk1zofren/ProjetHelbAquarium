@@ -6,7 +6,10 @@ private static int chrono2=20;
 
     public FishBlue(String colors, int speedMax, String nameImage,int id) {
         super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2);
-       
+        departureX =50;
+    departureY=50;
+    newTarget_X=departureX;
+    newTarget_Y=departureY;
         
         move =1;
         vitesse =3;
@@ -24,7 +27,8 @@ private static int chrono2=20;
 public  void update(){
     super.update();
     
-
+    target_x=newTarget_X;
+    target_y=newTarget_Y;
 chrono--;
 
  

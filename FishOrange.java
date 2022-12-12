@@ -28,6 +28,7 @@ public class FishOrange extends Fish {
   @Override
   public  void update(){
     super.update();
+    
     target_x=newTarget_X;
     target_y=newTarget_Y;
   

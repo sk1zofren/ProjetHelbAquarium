@@ -9,8 +9,8 @@ public class FishPurple extends Fish {
       bonusDeco = Decoration.getNDeco();
      
 
-    departureX =200;
-    departureY=200;
+    departureX =100;
+    departureY=100;
     newTarget_X=departureX;
     newTarget_Y=departureY;
 
@@ -29,17 +29,17 @@ public class FishPurple extends Fish {
   public void update(){
     super.update();
     chrono--;
-    
+     
     target_x=newTarget_X;
     target_y=newTarget_Y;
-System.out.println(target_x + " " + target_y);
+
 
  for (int i = 0; i < Aquarium.listFish.size(); i++) {
 
   if(Aquarium.listFish.get(i).getId()==4 && Aquarium.listFish.get(i).target_x == FishPurple.this.pos_x && Aquarium.listFish.get(i).target_y == FishPurple.this.pos_y ){
 
-newTarget_X = 0;
-newTarget_Y = 0;
+newTarget_X = (int) (1 + (Math.random() * (Aquarium.getTaille())));
+newTarget_Y = (int) (1 + (Math.random() * (Aquarium.getTaille())));
 
   }
   
