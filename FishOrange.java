@@ -2,18 +2,20 @@ public class FishOrange extends Fish {
 
   private static int chrono =20;
   private static int chrono2 =90;
+  
+  public int chrono3=50;
+  public int chrono4=50;
+  
  
 
-  public FishOrange(String colors, int vitesse, String nameImage,int id) {
-    super("orange", vitesse, "Image/fishOrange.png",1);
+  public FishOrange(String colors, int vitesse, String nameImage,int id, int speed) {
+    super("orange", vitesse, "Image/fishOrange.png",1,50);
     
-    newTarget_X=0;
-    newTarget_Y=0;
+    newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
+    newTarget_Y=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
    
 
-    if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
-      vitesse = vitesseMax;
-    }  
+    
   } 
   
   public String getColor(){
@@ -23,7 +25,19 @@ public class FishOrange extends Fish {
   @Override
   public  void update(){
     super.update();
-    
+    chrono3--;
+  /*   
+   if(chrono3<0){
+bouge=false;
+chrono4--;
+
+   }
+   if(chrono4<0){
+    bouge=true;
+    chrono3=50;
+    chrono4=50;
+   }
+*/
     target_x=newTarget_X;
     target_y=newTarget_Y;
   
@@ -87,26 +101,8 @@ public class FishOrange extends Fish {
       vitesse=2;
   }
   
-    for (int i = 0; i < Aquarium.listPast.size(); i++) {
-      if(FishOrange.this.getX() == Aquarium.listPast.get(i).getX() && Aquarium.listPast.get(i).getY() == FishOrange.this.getY()    ){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
-        Past past = Aquarium.listPast.get(i);
-        Aquarium.removeFromListPast(past);                 
-        for (int j = 0; j < Aquarium.getlistFish().size(); j++) {
-      // les poisson s'arrete 90 sec ( petit soucis le poisson garde son unique mouvement )
-          if(Aquarium.getlistFish().get(j).getId()!=1){   
-            chrono2=90;
-           
-            Aquarium.listFish.get(j).move=0; // si on laisse que move ben c'est celui qui a toucher qui s'arrete et pas tt les rouges
-          }   
-        }  
-      }
-    }
-    for (int i = 0; i < Aquarium.getlistFish().size(); i++) {
-      if(chrono2<1 && Aquarium.listFish.get(i).move == 0){
-        Aquarium.listFish.get(i).move=(int) (1 + (Math.random() * (8)));
-
-      } 
-    }
+    
+    
    
                                                  
   }  

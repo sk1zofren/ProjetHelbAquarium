@@ -12,8 +12,7 @@ public class Aquarium extends JPanel implements ActionListener {
     private final static int LENGHT = 500; // longueur de l'Aquarium
     private final static int HEIGHT = 600; // largeur de l'Aquarium 
     private final static int DOT_SIZE = 1;  // la taille des petits carreaux de la grille, chaque pas 
-    private final static int ALL_DOTS = 900; // le nombre total de petits carreux de la grille
-    private static int DELAY = 20; // nombre de miliseconde ecolouer entre chaque action 
+    private static int DELAY = 10; // nombre de miliseconde ecolouer entre chaque action ( vitesse d'image )
     static String temperature = "tied";
     static int numberOfDeco=0;
     private Timer timer; 
@@ -59,26 +58,12 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addFish(){   
-        for (int i = 0; i < 1; i++) {
-
-            //listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0));
-            //listFish.add(new FishRed("red",100, "Images/FishRed.png",0)); 
             
-            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
-            
-            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
-            //listFish.add(new FishRed("red",100, "Images/FishRed.png",0));
-            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            //listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            //listFish.add(new FishPurple("red",100, "Images/FishRed.png",0));
-            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0));
-            
-            
-            
-            
-        }
+            listFish.add(new FishRed("red",100, "Images/FishRed.png",0,30));
+            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 30));
+            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0,30));
+            listFish.add(new FishPurple("red",100, "Images/FishRed.png",0,30));
+        
     }
 
     private void addDeco(){
@@ -95,7 +80,7 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addPast(){
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 50; i++) {
             listPast.add(new Past("Image/past.png"));
         } 
     }

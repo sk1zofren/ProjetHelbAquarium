@@ -5,15 +5,12 @@ private static int chrono=20;
 private static int chrono2=20;
 private boolean pret=true;
 
-  public FishBlue(String colors, int speedMax, String nameImage,int id) {
-    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2);
+
+  public FishBlue(String colors, int speedMax, String nameImage,int id,int speed) {
+    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2,70);
     newTarget_X=0;
     newTarget_Y=0;   
-        vitesse =3;
-        if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
-
-        vitesse = vitesseMax;
-    }
+  
        
     }
       
@@ -27,7 +24,7 @@ public void ami(){
       newTarget_X = Aquarium.listFishFriend.get(i).pos_x;
       newTarget_Y = Aquarium.listFishFriend.get(i).pos_y;
       distanceDepart = distance;
-      System.out.println(newTarget_X + "//////" + distanceDepart);
+      
     }  
   }
 }  
@@ -40,6 +37,7 @@ public  void update(){
     if(pret){
     ami();
     }
+    
 //chrono--;
 
 

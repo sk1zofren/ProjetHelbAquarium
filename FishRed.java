@@ -1,15 +1,15 @@
-import java.sql.Time;
-import javax.swing.text.Position;
-
 public class FishRed extends Fish  {
 
-  public static int chrono=20; // nombre de temps du bonus de vitesse
+  public static int chrono=20; 
   public static int chrono2=20; 
+  public int chrono3=1;
+  public int chrono4=1;
  
-  public FishRed(String colors, int speedMax, String nameImage,int id) {
-    super("red", Aquarium.getSpeed(), "Image/FishRed.png",4);
+  public FishRed(String colors, int speedMax, String nameImage,int id,int speed) {
+    super("red", Aquarium.getSpeed(), "Image/FishRed.png",4,50);
     newTarget_X=0; // au debut mon poisson va au il veut (null )
     newTarget_Y=0; // au debut mon poisson va au il veut ( null)
+   //cpt=1000;
     
     if(vitesse >= vitesseMax){ // car la vitesse d'un poisson ne depasse jamais la vitesse max 
       vitesse = vitesseMax;
@@ -50,11 +50,23 @@ public class FishRed extends Fish  {
   public  void update(){
     super.update();
     //chrono--;
+    //chrono3--;
+    /* 
+    if(chrono3<0){
+ bouge=false;
+ chrono4--;
+    }
+    if(chrono4<0){
+     
+     chrono3=1;
+     chrono4=1;
+    }
+    */
     target_x=newTarget_X;
     target_y=newTarget_Y;   
     recherch();
     manger(); 
-  
+
     
     
 /* 
@@ -74,7 +86,7 @@ public class FishRed extends Fish  {
     
   
     
-    
+    /* 
     if(Aquarium.temperature.equals("cold")){
       vitesse = 1;
     }
@@ -82,7 +94,7 @@ public class FishRed extends Fish  {
     if(Aquarium.temperature.equals("hard")){
       vitesse = 4;
     }
-    
+    */
     // petit soucis, le poisson rouge apres avoir manger, ne sis plus ou il doit aller et aussi il ne sais pas encore aller chercher en diagonal les proies  
     /* 
     for (int i = 0; i < Aquarium.listFishPrey.size(); i++) {
@@ -110,7 +122,7 @@ public class FishRed extends Fish  {
       }
     }
     */
-
+/* 
     for (int i = 0; i < Aquarium.listButterfly.size(); i++) {
       if(FishRed.this.getX() == Aquarium.listButterfly.get(i).getX() && Aquarium.listButterfly.get(i).getY() == FishRed.this.getY()){ // si poisson Red est dans axe ordonee haut poisson mauve alors poisson mauve descend 
         Bug bug = Aquarium.listButterfly.get(i);
@@ -167,16 +179,12 @@ if(chrono<1 && vitesse ==3){
       // les poisson s'arrete 90 sec ( petit soucis le poisson garde son unique mouvement )
           if(Aquarium.getlistFish().get(j).getId()!=4){   
             chrono2=90;
-            Aquarium.listFish.get(j).move=0; // si on laisse que move ben c'est celui qui a toucher qui s'arrete et pas tt les rouges
+           
           }   
         }  
       }
     }
-    for (int i = 0; i < Aquarium.getlistFish().size(); i++) {
-      if(chrono2<1 && Aquarium.listFish.get(i).move == 0){
-        Aquarium.listFish.get(i).move=(int) (1 + (Math.random() * (8)));
-        
-      } 
-    } 
+    
+     */
   }
 }
