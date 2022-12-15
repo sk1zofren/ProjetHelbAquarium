@@ -7,7 +7,7 @@ private boolean pret=true;
 
 
   public FishBlue(String colors, int speedMax, String nameImage,int id,int speed) {
-    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2,10);
+    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2,50);
     newTarget_X=0;
     newTarget_Y=0;   
   

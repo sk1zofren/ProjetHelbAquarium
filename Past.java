@@ -5,11 +5,11 @@ public class Past {
     
     private final Image PastImage;
     private String nameImage;
-    private   int x =0; // j'ai mit en static pour pourvoir les utiliser dans la classe fish
+    private   int x =0; 
     private   int y=0;
     private int bordure =1;
-    private int chrono=60;
-    private int stop=-100000;
+    private int chrono=500;  
+    private int CompId;
 
 
     public Past(String nameImage) {
@@ -34,23 +34,25 @@ public class Past {
        }
 
        public void update(){
+       
 chrono--;
 if(chrono<0){
-    stop=0;
-    
+    for (int j = 0; j < Aquarium.listFish.size(); j++) {          
+        Aquarium.listFish.get(j).tqt = true;   
+    }  
 }
-System.out.println();
     for (int i = 0; i < Aquarium.listFish.size(); i++) {
             if (Aquarium.listFish.get(i).pos_x > getX()  - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
                 Past past = this;
                 Aquarium.removeFromListPast(past); 
-                chrono=100;
-                stop=-10000;
+                CompId = Aquarium.listFish.get(i).getId();
                 for (int j = 0; j < Aquarium.listFish.size(); j++) {          
-                    if(Aquarium.listFish.get(j).getId()!=Aquarium.listFish.get(i).getId())
-                    Aquarium.listFish.get(j).speed = stop;
+                    if(Aquarium.listFish.get(j).getId()!=CompId)
+                    Aquarium.listFish.get(j).tqt = false;
+                   
                     
                 }
+                chrono=500;
             }
         }
         
@@ -58,3 +60,4 @@ System.out.println();
        }
 
 }
+

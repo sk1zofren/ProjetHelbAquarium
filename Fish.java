@@ -154,7 +154,8 @@ public abstract class Fish {
 
     public void update() {
 
-        
+        if(tqt){
+            
         for (int i = 0; i < Aquarium.listFish.size(); i++) {     
             if(Aquarium.listFish.get(i).cpt>limite){ 
                 Aquarium.listFish.get(i).move(); 
@@ -164,7 +165,7 @@ public abstract class Fish {
             }
         }
 
-    
+        }
 
     }
 
