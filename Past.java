@@ -1,6 +1,5 @@
 import javax.swing.ImageIcon;
 import java.awt.Image;
-import java.util.concurrent.TimeUnit;
 
 public class Past {
     
@@ -9,6 +8,8 @@ public class Past {
     private   int x =0; // j'ai mit en static pour pourvoir les utiliser dans la classe fish
     private   int y=0;
     private int bordure =1;
+    private int chrono=60;
+    private int stop=-100000;
 
 
     public Past(String nameImage) {
@@ -33,17 +34,26 @@ public class Past {
        }
 
        public void update(){
-/*!!!!!!! 
-    for (int i = 0; i < Aquarium.listPast.size(); i++) {
-
-            if (Aquarium.listFish.pos_x > Aquarium.listPast.get(i).getX() - 6 && pos_x < Aquarium.listPast.get(i).getX() + 6 && pos_y > Aquarium.listPast.get(i).getY() - 6 && pos_y < Aquarium.listPast.get(i).getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
-                Past past = Aquarium.listPast.get(i);
-                Aquarium.removeFromListPast(past);
-              
-
+chrono--;
+if(chrono<0){
+    stop=0;
+    
+}
+System.out.println();
+    for (int i = 0; i < Aquarium.listFish.size(); i++) {
+            if (Aquarium.listFish.get(i).pos_x > getX()  - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
+                Past past = this;
+                Aquarium.removeFromListPast(past); 
+                chrono=100;
+                stop=-10000;
+                for (int j = 0; j < Aquarium.listFish.size(); j++) {          
+                    if(Aquarium.listFish.get(j).getId()!=Aquarium.listFish.get(i).getId())
+                    Aquarium.listFish.get(j).speed = stop;
+                    
+                }
             }
         }
- */
+        
 
        }
 

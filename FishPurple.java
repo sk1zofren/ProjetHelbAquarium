@@ -6,7 +6,7 @@ public class FishPurple extends Fish {
   public boolean commmence=true;
 
   public FishPurple(String colors, int speedMax,String nameImage,int id,int speed) {
-      super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3,50);
+      super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3,10);
    
     
     newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;

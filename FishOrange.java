@@ -9,7 +9,7 @@ public class FishOrange extends Fish {
  
 
   public FishOrange(String colors, int vitesse, String nameImage,int id, int speed) {
-    super("orange", vitesse, "Image/fishOrange.png",1,50);
+    super("orange", vitesse, "Image/fishOrange.png",1,10);
     
     newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
     newTarget_Y=(int) (1 + (Math.random() * (Aquarium.getHeights())));;

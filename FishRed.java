@@ -49,6 +49,7 @@ public class FishRed extends Fish  {
   @Override
   public  void update(){
     super.update();
+    
     //chrono--;
     //chrono3--;
     /* 

@@ -12,7 +12,7 @@ public class Aquarium extends JPanel implements ActionListener {
     private final static int LENGHT = 500; // longueur de l'Aquarium
     private final static int HEIGHT = 600; // largeur de l'Aquarium 
     private final static int DOT_SIZE = 1;  // la taille des petits carreaux de la grille, chaque pas 
-    private static int DELAY = 10; // nombre de miliseconde ecolouer entre chaque action ( vitesse d'image )
+    private static int DELAY = 5; // nombre de miliseconde ecolouer entre chaque action ( vitesse d'image )
     static String temperature = "tied";
     static int numberOfDeco=0;
     private Timer timer; 
