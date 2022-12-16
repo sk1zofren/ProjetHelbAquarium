@@ -48,10 +48,9 @@ chrono4--;
     newTarget_Y = (int) (1 + (Math.random() * (Aquarium.getLenghts())));
     touchOb =false;
   }
-
     chrono--;
     chrono2--;
-
+/* 
     for (int i = 0; i < Aquarium.listButterfly.size(); i++) {
       if(FishOrange.this.getX() == Aquarium.listButterfly.get(i).getX() && Aquarium.listButterfly.get(i).getY() == FishOrange.this.getY()){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
         Bug bug = Aquarium.listButterfly.get(i);
@@ -102,7 +101,7 @@ chrono4--;
   }
   
     
-    
+   */ 
    
                                                  
   }  

@@ -23,14 +23,12 @@ public class FishPurple extends Fish {
   */
   }
 public void fuit(){
-  //TODO fonctionne mais le fish purple ne peut pas fuir en diagonal
   double distanceDepart= Integer.MAX_VALUE;
   for (int i = 0; i < Aquarium.listFishRed.size(); i++) {
     int x_dist = Aquarium.listFishRed.get(i).pos_x-pos_x;
     int y_dist = Aquarium.listFishRed.get(i).pos_y-pos_y;  
     double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
     if(distance < distanceDepart ){ 
-      //calcule de l'equation de la droite
       if(pos_x<Aquarium.listFishRed.get(i).pos_x){ //if the purple fish is on the left of red fish
       newTarget_X = 0;
       newTarget_Y = pos_y;
@@ -60,31 +58,8 @@ public void fuit(){
     target_y=newTarget_Y;
     fuit();
     
-   
-
-/* 
- for (int i = 0; i < Aquarium.listFish.size(); i++) {
-
-  if(Aquarium.listFish.get(i).getId()==4 && Aquarium.listFish.get(i).target_x == FishPurple.this.pos_x && Aquarium.listFish.get(i).target_y == FishPurple.this.pos_y ){
-
-newTarget_X = (int) (1 + (Math.random() * (Aquarium.getTaille())));
-newTarget_Y = (int) (1 + (Math.random() * (Aquarium.getTaille())));
-
-  }
-  
- }
-*/
-  
  
-
-
-
-  
-  
-
-
-
-
+  /* 
               for (int i = 0; i < Aquarium.listButterfly.size(); i++) {
                 if(FishPurple.this.getX() == Aquarium.listButterfly.get(i).getX() && Aquarium.listButterfly.get(i).getY() == FishPurple.this.getY()){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
                   Bug bug = Aquarium.listButterfly.get(i);
@@ -126,7 +101,7 @@ newTarget_Y = (int) (1 + (Math.random() * (Aquarium.getTaille())));
               }
             }   
           }
-         
+         */
 
 
     

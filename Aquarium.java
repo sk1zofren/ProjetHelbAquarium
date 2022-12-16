@@ -22,9 +22,8 @@ public class Aquarium extends JPanel implements ActionListener {
     static  ArrayList<Fish> listFishRed = new ArrayList<Fish>();
     static  ArrayList<Bug> listBug = new ArrayList<Bug>();
     static ArrayList<Decoration> listDeco = new ArrayList<Decoration>();
-    static ArrayList<Bug> listButterfly = new ArrayList<Bug>();
-    static ArrayList<Bug> listCockroach = new ArrayList<Bug>();
-    static ArrayList<Bug> listLadyBug = new ArrayList<Bug>();
+    
+    
     static ArrayList<Past> listPast = new ArrayList<Past>();
 
     public static int getTaille(){
@@ -50,7 +49,7 @@ public class Aquarium extends JPanel implements ActionListener {
         }else if(temperature.equals("hard")){
             setBackground(Color.green);
         }else{
-            setBackground(Color.gray);
+            setBackground(Color.black);
         } 
         setFocusable(true);
         setPreferredSize(new Dimension(LENGHT, HEIGHT));
@@ -69,48 +68,28 @@ public class Aquarium extends JPanel implements ActionListener {
     private void addDeco(){
         for (int i = 0; i < 0; i++) {
             listDeco.add(new Decoration("Images/rec.png"));
+            
             numberOfDeco++;
         }
     }
 
     private void addBug(){
-        for (int i = 0; i < 0; i++) {
-            listBug.add(new Butterfly("Image/pap.png","Butterfly"));
+        for (int i = 0; i < 20; i++) {
+            listBug.add(new Bug("Image/pap.png","Butterfly")); 
+            listBug.add(new Bug("Image/cockroach.png","Cockroach"));
+                
+            
         }
     }
 
     private void addPast(){
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 0; i++) {
             listPast.add(new Past("Image/past.png"));
         } 
     }
 
-    public static ArrayList<Bug> getlistButterfly() {
-        for (int i = 0; i < listBug.size(); i++) {
-            if(listBug.get(i).getName().equals("Butterfly")){
-                listButterfly.add(listBug.get(i));               
-            } 
-        }
-        return listButterfly;
-    }
+   
 
-    public static ArrayList<Bug> getlistCockroach() {
-        for (int i = 0; i < listBug.size(); i++) {
-            if(listBug.get(i).getName().equals("Cockroach")){
-                listCockroach.add(listBug.get(i));               
-            } 
-        }
-        return listCockroach;
-    }
-
-    public static ArrayList<Bug> getlistLadyBug() {
-        for (int i = 0; i < listBug.size(); i++) {
-            if(listBug.get(i).getName().equals("LadyBug")){
-                listLadyBug.add(listBug.get(i));               
-            } 
-        }
-        return listLadyBug;
-    }
 
     public static ArrayList<Fish> getlistFishPrey() {
         for (int i = 0; i < listFish.size(); i++) {
@@ -161,9 +140,6 @@ public class Aquarium extends JPanel implements ActionListener {
         getlistFishPrey(); // regarder si ses getteurs sont indipsenable ici 
         getlistFishFriend();
         getlistFishRed();
-        getlistButterfly();
-        getlistCockroach();
-        getlistLadyBug();
         timer = new Timer(DELAY, this);
         timer.start();
     }
