@@ -23,6 +23,7 @@ public abstract class Fish {
     protected int cpt=speed;
     protected int limite=100;
     protected boolean tqt=true;
+    static boolean activeInsectivor=false;
     
     
 
@@ -151,6 +152,21 @@ public abstract class Fish {
         return Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
     }
 
+    public void insectivor(){
+        double distanceDepart= Integer.MAX_VALUE;
+        for (int i = 0; i < Aquarium.listFish.size(); i++) {
+          int x_dist = Aquarium.listFish.get(i).pos_x-this.pos_x;
+          int y_dist = Aquarium.listFish.get(i).pos_y-this.pos_y;  
+          double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
+          if(distance < distanceDepart && Aquarium.listFishFriend.get(i).pos_x != this.pos_x ){  
+            newTarget_X = Aquarium.listFish.get(i).pos_x;
+            newTarget_Y = Aquarium.listFish.get(i).pos_y;
+            distanceDepart = distance;
+            
+          }  
+        }
+      }
+
     public void update() {
 
         if(tqt){
@@ -162,7 +178,9 @@ public abstract class Fish {
                 cpt++;
             }
         }
-
+        }
+        if(activeInsectivor){
+            insectivor();
         }
 /* 
         for (int j = 0; j < Aquarium.listFish.size(); j++) {

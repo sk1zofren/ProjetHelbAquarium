@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Aquarium extends JPanel implements ActionListener {
 
@@ -37,6 +39,9 @@ public class Aquarium extends JPanel implements ActionListener {
     public static int getHeights(){
         return HEIGHT;
     }
+    public Color getTemp(){
+        return getBackground();
+    }
 
     public Aquarium() {
         initBoard();
@@ -44,6 +49,7 @@ public class Aquarium extends JPanel implements ActionListener {
 
     private void initBoard() {
 
+        addKeyListener(new TAdapter());
         if(temperature.equals("cold")){
             setBackground(Color.yellow);
         }else if(temperature.equals("hard")){
@@ -58,21 +64,24 @@ public class Aquarium extends JPanel implements ActionListener {
 
     private void addFish(){   
                      
-            listFish.add(new FishRed("orange",100, "Images/FishRed.png",0, 30));
-                   
+            listFish.add(new FishRed("orange",100, "Images/FishRed.png",0, 80));
+            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0, 10));
+            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 10));
+            listFish.add(new FishPurple("orange",100, "Images/FishRed.png",0, 10));
         
     }
 
     private void addDeco(){
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i <1 ; i++) {
             listDeco.add(new Decoration("Images/rec.png"));
+          
             
             numberOfDeco++;
         }
     }
 
     private void addBug(){
-        for (int i = 0; i < 0; i++) {
+        for (int i = 1; i < 0; i++) {
             listBug.add(new Bug("Image/pap.png","Butterfly")); 
             listBug.add(new Bug("Image/cockroach.png","Cockroach"));
             listBug.add(new Bug("Image/ladyBug.png","LadyBug"));
@@ -81,12 +90,10 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addPast(){
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 1; i++) {
             listPast.add(new Past("Image/past.png"));
         } 
     }
-
-   
 
 
     public static ArrayList<Fish> getlistFishPrey() {
@@ -127,6 +134,8 @@ public class Aquarium extends JPanel implements ActionListener {
     public static int getPas(){ // methode non indispensable 
         return DOT_SIZE;
     }
+    
+   
 
     
 
@@ -135,11 +144,12 @@ public class Aquarium extends JPanel implements ActionListener {
         addDeco();
         addBug();
         addPast();
-        getlistFishPrey(); // regarder si ses getteurs sont indipsenable ici 
+        getlistFishPrey();  
         getlistFishFriend();
         getlistFishRed();
         timer = new Timer(DELAY, this);
         timer.start();
+        System.out.println(getTemp());
     }
 
     @Override
@@ -208,5 +218,77 @@ public class Aquarium extends JPanel implements ActionListener {
     public static void addFromListFish(Fish fish) {
         listFish.add(fish);
     }
+
+    
+
+    private class TAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+            int key = e.getKeyCode();
+
+            if ((key == KeyEvent.VK_0) ) { //fonctionne pas 
+              initGame();
+            }
+
+            if ((key == KeyEvent.VK_1) ) {
+                setBackground(Color.yellow);
+                temperature="cold";
+            }
+
+            if ((key == KeyEvent.VK_2) ) {
+                setBackground(Color.black);
+                temperature="tiede";
+            }
+
+            if ((key == KeyEvent.VK_3) ) {
+                setBackground(Color.green);
+                temperature="hard";
+            }
+
+            if ((key == KeyEvent.VK_4) ) {
+                addBug();
+            }
+
+            if ((key == KeyEvent.VK_5) ) {
+                listPast.add(new Past("Image/past.png"));
+            }
+
+            if ((key == KeyEvent.VK_6) ) { // fonctionne pas 
+                FishBlue.pret=false;
+                Fish.activeInsectivor=true;
+                
+            }
+
+            if ((key == KeyEvent.VK_7) ) { // fonctionne pas 
+              
+            }
+
+            if ((key == KeyEvent.VK_8) ) { // fonctionne pas 
+              
+            }
+
+            if ((key == KeyEvent.VK_9) ) { 
+                addFish();
+                
+            }
+
+            if ((key == KeyEvent.VK_R) ) { // fonctionne pas s
+          
             
+            }
+
+            if ((key == KeyEvent.VK_L) ) {
+                addDeco();
+            }
+
+              
+  
+
+          
+
+        }
+            
+    }
 }

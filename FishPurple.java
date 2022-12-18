@@ -41,7 +41,8 @@ public void fuit(){
   
   @Override
   public void update(){
-    super.update();  
+    super.update();
+      
     target_x=newTarget_X;
     target_y=newTarget_Y;
     fuit();  

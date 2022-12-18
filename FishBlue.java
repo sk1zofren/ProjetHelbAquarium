@@ -3,7 +3,7 @@ public class FishBlue extends Fish {
    // ce poisson de base a une vitesse plus grande donc avev le bonus c'est encore plus
 private static int chrono=20;
 private static int chrono2=20;
-private boolean pret=true;
+ static boolean pret=true;
 
 
   public FishBlue(String colors, int speedMax, String nameImage,int id,int speed) {
@@ -20,7 +20,7 @@ public void ami(){
     int x_dist = Aquarium.listFishFriend.get(i).pos_x-pos_x;
     int y_dist = Aquarium.listFishFriend.get(i).pos_y-pos_y;  
     double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
-    if(distance < distanceDepart && Aquarium.listFishFriend.get(i).pos_x != pos_x ){  
+    if(distance < distanceDepart && Aquarium.listFishFriend.get(i).pos_x != pos_x ){ //TODO je dois peut etre rajouter pos_y aussi pour dire la meme position que lui
       newTarget_X = Aquarium.listFishFriend.get(i).pos_x;
       newTarget_Y = Aquarium.listFishFriend.get(i).pos_y;
       distanceDepart = distance;
@@ -31,6 +31,7 @@ public void ami(){
 
 @Override
 public  void update(){
+  System.out.println(target_x + "//////" + target_y);
     super.update(); 
     target_x=newTarget_X;
     target_y=newTarget_Y;
