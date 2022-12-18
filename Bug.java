@@ -14,7 +14,6 @@ public class Bug {
     
    
     public Bug(String nameImage ,String name) {
-
         ImageIcon iib = new ImageIcon(nameImage);
         BugImage = iib.getImage();
         x = (int) (Math.random()*Aquarium.getTaille()-bordure); // -1 c'est pour eviter que le poisson appraisse directemet dans les bords
@@ -65,7 +64,7 @@ public class Bug {
         
 if(chrono5<0){
     for (int j = 0; j < Aquarium.listFish.size(); j++) {
-        if ( Aquarium.listFish.get(j).speed == 91) {
+        if ( Aquarium.listFish.get(j).speed == 99) {
         Aquarium.listFish.get(j).speed = 50;
       }
 
@@ -76,7 +75,7 @@ if(chrono5<0){
           if (Aquarium.listFish.get(i).pos_x > getX() - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
             Bug bug = this;  
             Aquarium.removeFromListBug(bug);  
-            Aquarium.listFish.get(i).speed=91; 
+            Aquarium.listFish.get(i).speed=99; 
             chrono5=this.getDuree(); 
              
           }  

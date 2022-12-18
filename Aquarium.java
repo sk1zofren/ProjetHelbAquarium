@@ -57,11 +57,9 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addFish(){   
-            
-            listFish.add(new FishRed("red",100, "Images/FishRed.png",0,30));
-            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 30));
-            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0,30));
-            listFish.add(new FishPurple("red",100, "Images/FishRed.png",0,30));
+                     
+            listFish.add(new FishRed("orange",100, "Images/FishRed.png",0, 30));
+                   
         
     }
 
@@ -74,11 +72,11 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addBug(){
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 0; i++) {
             listBug.add(new Bug("Image/pap.png","Butterfly")); 
             listBug.add(new Bug("Image/cockroach.png","Cockroach"));
-                
-            
+            listBug.add(new Bug("Image/ladyBug.png","LadyBug"));
+                           
         }
     }
 
@@ -206,6 +204,9 @@ public class Aquarium extends JPanel implements ActionListener {
 
     public static void removeFromListPast(Past past) {
         listPast.remove(past);
+    }
+    public static void addFromListFish(Fish fish) {
+        listFish.add(fish);
     }
             
 }

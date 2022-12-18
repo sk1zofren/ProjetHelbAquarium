@@ -4,24 +4,13 @@ public class FishPurple extends Fish {
   public static int chrono2=20;
   public static int bonusDeco = Aquarium.numberOfDeco;
   public boolean commmence=true;
-
   public FishPurple(String colors, int speedMax,String nameImage,int id,int speed) {
-      super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3,50);
-   
-    
+    super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3,50);    
     newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
     newTarget_Y=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
-    
-
-     /* 
-    
-     if(vitesse >= vitesseMax){ // ne fonctionne pas encore bien car ne veux pas récuperer la valeur du nombre de deco
-      vitesse = vitesseMax;
-      }else{
-        vitesse= Aquarium.numberOfDeco;
-      }
-  */
+      
   }
+
 public void fuit(){
   double distanceDepart= Integer.MAX_VALUE;
   for (int i = 0; i < Aquarium.listFishRed.size(); i++) {
@@ -52,59 +41,14 @@ public void fuit(){
   
   @Override
   public void update(){
-    super.update();
-    
+    super.update();  
     target_x=newTarget_X;
     target_y=newTarget_Y;
-    fuit();
-    
- 
-  /* 
-              for (int i = 0; i < Aquarium.listButterfly.size(); i++) {
-                if(FishPurple.this.getX() == Aquarium.listButterfly.get(i).getX() && Aquarium.listButterfly.get(i).getY() == FishPurple.this.getY()){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
-                  Bug bug = Aquarium.listButterfly.get(i);
-                  Aquarium.removeFromListBug(bug); 
-                  for (int j = 0; j < Aquarium.getlistFish().size(); j++) {  
-                    if(Aquarium.getlistFish().get(j).getId()==3){   
-                      
-                    }  
-                  }
-                }   
-              }
-             
-
-
-            for (int i = 0; i < Aquarium.listCockroach.size(); i++) {
-              if(FishPurple.this.getX() == Aquarium.listCockroach.get(i).getX() && Aquarium.listCockroach.get(i).getY() == FishPurple.this.getY()    ){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
-                Bug bug = Aquarium.listCockroach.get(i);
-                Aquarium.removeFromListBug(bug); 
-                for (int j = 0; j < Aquarium.getlistFish().size(); j++) {  
-                  if(Aquarium.getlistFish().get(j).getId()==3){   
-                    chrono=50;
-                    vitesse =3;
-                  }  
-                }
-              }   
-            }
-
-
-
-          for (int i = 0; i < Aquarium.listLadyBug.size(); i++) {
-            if(FishPurple.this.getX() == Aquarium.listLadyBug.get(i).getX() && Aquarium.listLadyBug.get(i).getY() == FishPurple.this.getY()    ){ // si poisson orange est dans axe ordonee haut poisson mauve alors poisson mauve descend 
-              Bug bug = Aquarium.listLadyBug.get(i);
-              Aquarium.removeFromListBug(bug); 
-              for (int j = 0; j < Aquarium.getlistFish().size(); j++) {  
-                if(Aquarium.getlistFish().get(j).getId()==3){   
-                  chrono=60;
-                  vitesse =3;
-                }  
-              }
-            }   
-          }
-         */
-
-
-    
-     
+    fuit();  
+    if(speed >= speedMax){
+      speed = speedMax;
+      }else{
+        speed=speedBasic+Aquarium.numberOfDeco;
+      }
       }
 }

@@ -8,8 +8,6 @@ public abstract class Fish {
     protected String colors; // TODO devra etre supprimer car pas utiliser
     private final Image fishImage;
     private int id = 0; // TODO devra etre supprimer car pas utiliser
-    protected int vitesse = 1; // TODO devra etre supprimer car pas utiliser
-    protected int vitesseMax = 3; // TODO devra etre supprimer car pas utiliser
     protected int pos_x; // coordoneé X du poisson
     protected int pos_y; // coordoneé Y du poisson
     protected int target_x; // coordoneé X de la cible du poisson
@@ -20,11 +18,11 @@ public abstract class Fish {
     protected int departureX; // TODO risque d'eter supprimer car non utiliser
     protected int departureY; // TODO risque d'eter supprimer car non utiliser
     protected int speed;
-    protected int speedMax; 
+    protected int speedMax=99;
+    protected int speedBasic=50; 
     protected int cpt=speed;
     protected int limite=100;
     protected boolean tqt=true;
-    
     
     
 
@@ -115,22 +113,22 @@ public abstract class Fish {
         // TODO demander au prof si ce code est de la duplication de code à et vérifier si c'est assez précis et grand comme obstacle
         for (int j = 0; j < Aquarium.listDeco.size(); j++) {
 
-            if (pos_y >= Aquarium.listDeco.get(j).getY() - 10 && pos_y <= Aquarium.listDeco.get(j).getY() + 10 && pos_x == Aquarium.listDeco.get(j).getX() + 10) {
+            if (pos_y >= Aquarium.listDeco.get(j).getY() - 15 && pos_y <= Aquarium.listDeco.get(j).getY() + 15 && pos_x == Aquarium.listDeco.get(j).getX() + 15) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_y >= Aquarium.listDeco.get(j).getY() - 10 && pos_y <= Aquarium.listDeco.get(j).getY() + 10 && pos_x == Aquarium.listDeco.get(j).getX() - 10) {
+            if (pos_y >= Aquarium.listDeco.get(j).getY() - 15 && pos_y <= Aquarium.listDeco.get(j).getY() + 15 && pos_x == Aquarium.listDeco.get(j).getX() - 15) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_x >= Aquarium.listDeco.get(j).getX() - 10 && pos_x <= Aquarium.listDeco.get(j).getX() + 10 && pos_y == Aquarium.listDeco.get(j).getY() + 10) {
+            if (pos_x >= Aquarium.listDeco.get(j).getX() - 15 && pos_x <= Aquarium.listDeco.get(j).getX() + 15 && pos_y == Aquarium.listDeco.get(j).getY() + 15) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_x >= Aquarium.listDeco.get(j).getX() - 10 && pos_x <= Aquarium.listDeco.get(j).getX() + 10 && pos_y == Aquarium.listDeco.get(j).getY() - 10) {
+            if (pos_x >= Aquarium.listDeco.get(j).getX() - 15 && pos_x <= Aquarium.listDeco.get(j).getX() + 15 && pos_y == Aquarium.listDeco.get(j).getY() - 15) {
                 res = false;
                 touchOb = true;
             }
@@ -156,7 +154,6 @@ public abstract class Fish {
     public void update() {
 
         if(tqt){
-
         for (int i = 0; i < Aquarium.listFish.size(); i++) {     
             if(Aquarium.listFish.get(i).cpt>limite){ 
                 Aquarium.listFish.get(i).move(); 
@@ -167,6 +164,17 @@ public abstract class Fish {
         }
 
         }
+/* 
+        for (int j = 0; j < Aquarium.listFish.size(); j++) {
+            for (int i = 0; i < Aquarium.listFish.size(); i++) {
+                if(Aquarium.listFish.get(j).pos_x == Aquarium.listFish.get(i).pos_x && Aquarium.listFish.get(j).pos_y == Aquarium.listFish.get(i).pos_y  && Aquarium.listFish.get(j).getColors().equals(Aquarium.listFish.get(i).getColors()) ){ 
+                    Fish fish = Aquarium.listFish.get(i);
+                    //TODO petit soucis au niveau de l'ajout d'un poisson dans la liste
+                    Aquarium.addFromListFish(this);
+                }
+            }
+        }
+       */ 
 
     }
 
