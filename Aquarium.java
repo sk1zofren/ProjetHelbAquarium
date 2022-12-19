@@ -64,10 +64,9 @@ public class Aquarium extends JPanel implements ActionListener {
 
     private void addFish(){   
                      
-            listFish.add(new FishRed("orange",100, "Images/FishRed.png",0, 80));
-            listFish.add(new FishOrange("orange",100, "Images/FishRed.png",0, 10));
+            
             listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 10));
-            listFish.add(new FishPurple("orange",100, "Images/FishRed.png",0, 10));
+            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 10));
         
     }
 
@@ -251,8 +250,8 @@ public class Aquarium extends JPanel implements ActionListener {
                 addBug();
             }
 
-            if ((key == KeyEvent.VK_5) ) {
-                listPast.add(new Past("Image/past.png"));
+            if ((key == KeyEvent.VK_5) ) { // TODO quand je rajoute des pastille il s'arrette pas
+                addPast();
             }
 
             if ((key == KeyEvent.VK_6) ) { // fonctionne pas 
@@ -275,7 +274,7 @@ public class Aquarium extends JPanel implements ActionListener {
             }
 
             if ((key == KeyEvent.VK_R) ) { // fonctionne pas s
-          
+       
             
             }
 

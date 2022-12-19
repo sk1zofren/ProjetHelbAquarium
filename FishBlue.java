@@ -3,11 +3,11 @@ public class FishBlue extends Fish {
    // ce poisson de base a une vitesse plus grande donc avev le bonus c'est encore plus
 private static int chrono=20;
 private static int chrono2=20;
- static boolean pret=true;
+static boolean pret=true;
 
 
   public FishBlue(String colors, int speedMax, String nameImage,int id,int speed) {
-    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2,65);
+    super(colors, Aquarium.getSpeed(), "Image/FishBlue.png",2,90);
     newTarget_X=0;
     newTarget_Y=0;   
   

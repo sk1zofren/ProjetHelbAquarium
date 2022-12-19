@@ -182,17 +182,18 @@ public abstract class Fish {
         if(activeInsectivor){
             insectivor();
         }
-/* 
-        for (int j = 0; j < Aquarium.listFish.size(); j++) {
-            for (int i = 0; i < Aquarium.listFish.size(); i++) {
-                if(Aquarium.listFish.get(j).pos_x == Aquarium.listFish.get(i).pos_x && Aquarium.listFish.get(j).pos_y == Aquarium.listFish.get(i).pos_y  && Aquarium.listFish.get(j).getColors().equals(Aquarium.listFish.get(i).getColors()) ){ 
-                    Fish fish = Aquarium.listFish.get(i);
-                    //TODO petit soucis au niveau de l'ajout d'un poisson dans la liste
-                    Aquarium.addFromListFish(this);
+
+        for (int j = 0; j < Aquarium.listFish.size(); j++) {          
+                if( this.hashCode()!= Aquarium.listFish.get(j).hashCode() && Aquarium.listFish.get(j).getColors().equals(this.getColors()) && Aquarium.listFish.get(j).pos_x == this.pos_x && Aquarium.listFish.get(j).pos_y == this.pos_y  ){ 
+                    Fish fish = this;
+                    Aquarium.removeFromListFish(fish);  
+                    Aquarium.removeFromListFish(Aquarium.listFish.get(j));   
+                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));  
+                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));
+                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));        
                 }
-            }
         }
-       */ 
+       
 
     }
 

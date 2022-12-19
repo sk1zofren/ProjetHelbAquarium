@@ -4,12 +4,14 @@ public class FishRed extends Fish  {
   public static int chrono2=20; 
   public int chrono3=1;
   public int chrono4=1;
+  
  
   public FishRed(String colors, int speedMax, String nameImage,int id,int speed) {
     super("red", Aquarium.getSpeed(), "Image/FishRed.png",4,80);
     newTarget_X=0; // au debut mon poisson va au il veut (null )
     newTarget_Y=0; // au debut mon poisson va au il veut ( null)
    
+
   
   }
 
@@ -45,7 +47,9 @@ public class FishRed extends Fish  {
 
   @Override
   public  void update(){
+    
     super.update();
+    
     target_x=newTarget_X;
     target_y=newTarget_Y;   
     recherch();
