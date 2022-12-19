@@ -9,9 +9,7 @@ public class Programme extends JFrame {
     }
     
     private void initUI() {
-        
-        add(new Aquarium());
-               
+        add(new Aquarium());       
         setResizable(false);
         pack();
         

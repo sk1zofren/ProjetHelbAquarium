@@ -8,7 +8,7 @@ public class Past {
   private int x = 0;
   private int y = 0;
   private int bordure = 1;
-  private int chrono = 500;
+  private static int chrono = 10000;
   private int CompId;
 
   public Past(String nameImage) {
@@ -24,6 +24,10 @@ public class Past {
     return PastImage;
   }
 
+  public int getDuree(){
+    return chrono;
+  }
+
   public int getX() {
     return x;
   }
@@ -33,7 +37,7 @@ public class Past {
   }
 
   public void update() {
-
+    System.out.println(chrono);
     chrono--;
     if (chrono < 0) {
       for (int j = 0; j < Aquarium.listFish.size(); j++) {
@@ -44,14 +48,16 @@ public class Past {
       if (Aquarium.listFish.get(i).pos_x > getX() - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
         Past past = this;
         Aquarium.removeFromListPast(past);
+       
         CompId = Aquarium.listFish.get(i).getId();
         for (int j = 0; j < Aquarium.listFish.size(); j++) {
           if (Aquarium.listFish.get(j).getId() != CompId)
             Aquarium.listFish.get(j).tqt = false;
-
+            chrono = 10000;
         }
-        chrono = 500;
+        
       }
+     
     }
 
   }

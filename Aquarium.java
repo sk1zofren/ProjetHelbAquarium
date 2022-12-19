@@ -23,6 +23,7 @@ public class Aquarium extends JPanel implements ActionListener {
     static  ArrayList<Fish> listFishFriend = new ArrayList<Fish>();
     static  ArrayList<Fish> listFishRed = new ArrayList<Fish>();
     static  ArrayList<Bug> listBug = new ArrayList<Bug>();
+    static  ArrayList<Rosa> listRosa = new ArrayList<Rosa>();
     static ArrayList<Decoration> listDeco = new ArrayList<Decoration>();
     
     
@@ -39,9 +40,7 @@ public class Aquarium extends JPanel implements ActionListener {
     public static int getHeights(){
         return HEIGHT;
     }
-    public Color getTemp(){
-        return getBackground();
-    }
+  
 
     public Aquarium() {
         initBoard();
@@ -65,8 +64,10 @@ public class Aquarium extends JPanel implements ActionListener {
     private void addFish(){   
                      
             
-            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 10));
-            listFish.add(new FishBlue("orange",100, "Images/FishRed.png",0, 10));
+            listFish.add(new FishBlue("blue", "Images/FishOrange.png",0, 10)); 
+            listFish.add(new FishPurple("purple","Images/FishRed.png",0, 10));
+            listFish.add(new FishRed("red", "Images/FishRed.png",0, 10)); 
+            listFish.add(new FishOrange("orange","Images/FishRed.png",0, 10));
         
     }
 
@@ -89,8 +90,14 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     private void addPast(){
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 0; i++) {
             listPast.add(new Past("Image/past.png"));
+        } 
+    }
+
+    private void addRosa(){
+        for (int i = 0; i < 0; i++) {
+            listRosa.add(new Rosa("Image/rose.png"));
         } 
     }
 
@@ -135,20 +142,19 @@ public class Aquarium extends JPanel implements ActionListener {
     }
     
    
-
-    
-
     private void initGame() {  
         addFish();
         addDeco();
         addBug();
         addPast();
+        addRosa();
         getlistFishPrey();  
         getlistFishFriend();
         getlistFishRed();
         timer = new Timer(DELAY, this);
         timer.start();
-        System.out.println(getTemp());
+        
+        
     }
 
     @Override
@@ -174,6 +180,10 @@ public class Aquarium extends JPanel implements ActionListener {
         for(int i =0; i<listPast.size(); i++){      
             listPast.get(i).update(); 
         }
+
+        for(int i =0; i<listRosa.size(); i++){      
+            listRosa.get(i).update(); 
+        }
     }
 
     private void doDrawing(Graphics g) { 
@@ -191,7 +201,11 @@ public class Aquarium extends JPanel implements ActionListener {
 
         for (int i = 0; i < listPast.size(); i++) {
             g.drawImage(listPast.get(i).getPast(), listPast.get(i).getX()*DOT_SIZE, listPast.get(i).getY()*DOT_SIZE, this);   
-        }         
+        }  
+        
+        for (int i = 0; i < listRosa.size(); i++) {
+            g.drawImage(listRosa.get(i).getRosa(), listRosa.get(i).getX()*DOT_SIZE, listRosa.get(i).getY()*DOT_SIZE, this);   
+        }
     }
 
     @Override
@@ -203,6 +217,10 @@ public class Aquarium extends JPanel implements ActionListener {
         listFish.remove(fish);
     }
     
+    public static void removeFromListRosa(Rosa rosa) {
+        listRosa.remove(rosa);
+    }
+
     public static void removeFromListFishPray(Fish fish) {
         listFishPrey.remove(fish);
     }
@@ -218,8 +236,6 @@ public class Aquarium extends JPanel implements ActionListener {
         listFish.add(fish);
     }
 
-    
-
     private class TAdapter extends KeyAdapter {
 
         @Override
@@ -227,8 +243,17 @@ public class Aquarium extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_0) ) { //fonctionne pas 
-              initGame();
+            if ((key == KeyEvent.VK_0) ) { //TODOO fonctionne pas bien, le poisson bleu ne sais plus ou aller, il, pert sa target 
+                listFish.removeAll(listFish);
+                listBug.removeAll(listBug);
+                listDeco.removeAll(listDeco);
+                listPast.removeAll(listPast);
+                doUpdate();
+                numberOfDeco=0;
+                setBackground(Color.black);
+                temperature="tiede";
+                initGame();       
+              
             }
 
             if ((key == KeyEvent.VK_1) ) {
@@ -255,8 +280,7 @@ public class Aquarium extends JPanel implements ActionListener {
             }
 
             if ((key == KeyEvent.VK_6) ) { // fonctionne pas 
-                FishBlue.pret=false;
-                Fish.activeInsectivor=true;
+              
                 
             }
 
@@ -269,24 +293,55 @@ public class Aquarium extends JPanel implements ActionListener {
             }
 
             if ((key == KeyEvent.VK_9) ) { 
-                addFish();
-                
+                int x = (int)(1 + (Math.random() * (4)));
+                switch (x) {
+                    case 1:
+                    listFish.add(new FishBlue("orange", "Images/FishRed.png",0, 10));
+                        break;
+                    case 2:
+                    listFish.add(new FishRed("red", "Images/FishRed.png",0, 10));
+                        break;
+                    case 3:
+                    listFish.add(new FishOrange("red", "Images/FishRed.png",0, 10));
+                        break;
+                    case 4:
+                    listFish.add(new FishPurple("red", "Images/FishRed.png",0, 10));
+                        break;  
+
+                    default:
+                        break;
+                }        
+            }
+            if ((key == KeyEvent.VK_R) ) { 
+                for (int j = 0; j < Aquarium.listFish.size(); j++) {
+                    if(Aquarium.listFish.get(j).getId()!=4){
+                    Aquarium.listFish.get(j).tqt = false;
+                    }
+                  }   
+            }
+            if ((key == KeyEvent.VK_B) ) {
+                for (int j = 0; j < Aquarium.listFish.size(); j++) {
+                    if(Aquarium.listFish.get(j).getId()!=2){
+                    Aquarium.listFish.get(j).tqt = false;
+                    }
+                  }
             }
 
-            if ((key == KeyEvent.VK_R) ) { // fonctionne pas s
-       
-            
+            if ((key == KeyEvent.VK_M) ) {
+                for (int j = 0; j < Aquarium.listFish.size(); j++) {
+                    if(Aquarium.listFish.get(j).getId()!=3){
+                    Aquarium.listFish.get(j).tqt = false;
+                    }
+                  }
             }
 
-            if ((key == KeyEvent.VK_L) ) {
-                addDeco();
+            if ((key == KeyEvent.VK_O) ) {
+                for (int j = 0; j < Aquarium.listFish.size(); j++) {
+                    if(Aquarium.listFish.get(j).getId()!=1){
+                    Aquarium.listFish.get(j).tqt = false;
+                    }
+                  }
             }
-
-              
-  
-
-          
-
         }
             
     }

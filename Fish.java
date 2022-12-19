@@ -27,7 +27,7 @@ public abstract class Fish {
     
     
 
-    public Fish(String colors, int speedMax, String nameImage, int id,int speed) {
+    public Fish(String colors, String nameImage, int id,int speed) {
 
         ImageIcon iib = new ImageIcon(nameImage);
         fishImage = iib.getImage();
@@ -188,9 +188,9 @@ public abstract class Fish {
                     Fish fish = this;
                     Aquarium.removeFromListFish(fish);  
                     Aquarium.removeFromListFish(Aquarium.listFish.get(j));   
-                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));  
-                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));
-                    Aquarium.listFish.add((new FishBlue("orange",100, "Images/FishRed.png",0, 10)));        
+                    Aquarium.listFish.add((new FishBlue("orange", "Images/FishRed.png",0, 10)));  
+                    Aquarium.listFish.add((new FishBlue("orange","Images/FishRed.png",0, 10)));
+                    Aquarium.listFish.add((new FishBlue("orange","Images/FishRed.png",0, 10)));        
                 }
         }
        

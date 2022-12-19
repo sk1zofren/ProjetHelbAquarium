@@ -6,8 +6,8 @@ public class FishRed extends Fish  {
   public int chrono4=1;
   
  
-  public FishRed(String colors, int speedMax, String nameImage,int id,int speed) {
-    super("red", Aquarium.getSpeed(), "Image/FishRed.png",4,80);
+  public FishRed(String colors, String nameImage,int id,int speed) {
+    super("red", "Image/FishRed.png",4,80);
     newTarget_X=0; // au debut mon poisson va au il veut (null )
     newTarget_Y=0; // au debut mon poisson va au il veut ( null)
    

@@ -4,8 +4,8 @@ public class FishPurple extends Fish {
   public static int chrono2=20;
   public static int bonusDeco = Aquarium.numberOfDeco;
   public boolean commmence=true;
-  public FishPurple(String colors, int speedMax,String nameImage,int id,int speed) {
-    super(colors, Aquarium.getSpeed(), "Image/FishPurple.png",3,50);    
+  public FishPurple(String colors,String nameImage,int id,int speed) {
+    super(colors, "Image/FishPurple.png",3,50);    
     newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
     newTarget_Y=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
       
