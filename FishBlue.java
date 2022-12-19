@@ -6,8 +6,8 @@ private static int chrono2=20;
 static boolean pret=true;
 
 
-  public FishBlue(String colors, String nameImage,int id,int speed) {
-    super(colors, "Image/FishBlue.png",2,90);
+  public FishBlue( String nameImage,int id,int speed) {
+    super("Image/FishBlue.png",2,90);
     newTarget_X=0;
     newTarget_Y=0;   
   

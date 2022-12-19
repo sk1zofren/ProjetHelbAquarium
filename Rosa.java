@@ -1,30 +1,20 @@
-import javax.swing.ImageIcon;
-import java.awt.Image;
-
 public class Rosa {
     
-
-    private final Image RosaImage;
-    private String nameImage;
-    private   int x =0; // j'ai mit en static pour pourvoir les utiliser dans la classe fish
-    private   int y=0;
-    private int CompId;
+    private  int x =0; // x coordinate
+    private  int y=0; // y coordinate
+    private int CompId; // to compare id
     
 
-    public Rosa(String nameImage) {
+    public Rosa() {
        
-       ImageIcon iib = new ImageIcon("Image/rose.png");
-       RosaImage = iib.getImage();
-       x = (int) (Math.random()*Aquarium.getTaille()-1);
-        y = (int) (Math.random()*Aquarium.getTaille()-1);
+       
+       x = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
+        y = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
       
        
     }
 
 
-    public Image getRosa(){
-        return RosaImage;
-    }
 
  
 
@@ -39,16 +29,16 @@ public class Rosa {
 
 
        public void update(){
-
-        for (int i = 0; i < Aquarium.listFish.size(); i++) {
-            if (Aquarium.listFish.get(i).pos_x > getX() - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
+// TODO revoir la methode si il n'y a pas de duplication de code 
+        for (int i = 0; i < Aquarium.listFish.size(); i++) { // when a fish touch a pink past all fish appears in the random position
+            if (Aquarium.listFish.get(i).pos_x > getX() - Past.borderPast && Aquarium.listFish.get(i).pos_x < getX() + Past.borderPast && Aquarium.listFish.get(i).pos_y > getY() - Past.borderPast && Aquarium.listFish.get(i).pos_y < getY() + Past.borderPast) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
               Rosa rosa = this;
               Aquarium.removeFromListRosa(rosa);
               CompId = Aquarium.listFish.get(i).getId();
               for (int j = 0; j < Aquarium.listFish.size(); j++) {
                 if (Aquarium.listFish.get(j).getId() == CompId)
-                  Aquarium.listFish.get(j).pos_x = (int)(1 + (Math.random() * (Aquarium.getTaille())));
-                  Aquarium.listFish.get(j).pos_y = (int)(1 + (Math.random() * (Aquarium.getTaille())));
+                  Aquarium.listFish.get(j).pos_x = (int)(1 + (Math.random() * (Aquarium.getheight())));
+                  Aquarium.listFish.get(j).pos_y = (int)(1 + (Math.random() * (Aquarium.getheight())));
       
               }
              

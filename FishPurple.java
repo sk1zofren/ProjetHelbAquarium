@@ -4,8 +4,9 @@ public class FishPurple extends Fish {
   public static int chrono2=20;
   public static int bonusDeco = Aquarium.numberOfDeco;
   public boolean commmence=true;
-  public FishPurple(String colors,String nameImage,int id,int speed) {
-    super(colors, "Image/FishPurple.png",3,50);    
+
+  public FishPurple(String nameImage,int id,int speed) {
+    super("Image/FishPurple.png",3,50);    
     newTarget_X=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
     newTarget_Y=(int) (1 + (Math.random() * (Aquarium.getHeights())));;
       
@@ -18,7 +19,7 @@ public void fuit(){
     int y_dist = Aquarium.listFishRed.get(i).pos_y-pos_y;  
     double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
     if(distance < distanceDepart ){ 
-      if(pos_x<Aquarium.listFishRed.get(i).pos_x){ //if the purple fish is on the left of red fish
+      if(pos_x<Aquarium.listFishRed.get(i).pos_x){ 
       newTarget_X = 0;
       newTarget_Y = pos_y;
       

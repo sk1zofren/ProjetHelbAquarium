@@ -1,28 +1,21 @@
-import javax.swing.ImageIcon;
-import java.awt.Image;
-
 public class Past {
 
-  private final Image PastImage;
-  private String nameImage;
-  private int x = 0;
-  private int y = 0;
-  private int bordure = 1;
-  private static int chrono = 10000;
-  private int CompId;
 
-  public Past(String nameImage) {
+  private int x = 0; // x coordinate
+  private int y = 0; // y coordinate
+  static int borderPast=6;
+  private static int chrono = 10000; // chrono for timer
+  private int CompId; // to compare id
 
-    ImageIcon iib = new ImageIcon("Image/past.png");
-    PastImage = iib.getImage();
-    x = (int)(Math.random() * Aquarium.getTaille() - bordure);
-    y = (int)(Math.random() * Aquarium.getTaille() - bordure);
+  public Past() {
+
+    
+    x = (int)(Math.random() * Aquarium.getheight() - Fish.screenLimitLeft);
+    y = (int)(Math.random() * Aquarium.getheight() - Fish.screenLimitLeft);
 
   }
 
-  public Image getPast() {
-    return PastImage;
-  }
+  
 
   public int getDuree(){
     return chrono;
@@ -37,23 +30,22 @@ public class Past {
   }
 
   public void update() {
-    System.out.println(chrono);
+    
     chrono--;
-    if (chrono < 0) {
+    if (chrono < 0) { // when the time is finish the fish can move
       for (int j = 0; j < Aquarium.listFish.size(); j++) {
-        Aquarium.listFish.get(j).tqt = true;
+        Aquarium.listFish.get(j).move = true;
       }
     }
-    for (int i = 0; i < Aquarium.listFish.size(); i++) {
-      if (Aquarium.listFish.get(i).pos_x > getX() - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
+    for (int i = 0; i < Aquarium.listFish.size(); i++) { // when a fish touch a past, the auther fish can't move
+      if (Aquarium.listFish.get(i).pos_x > getX() - borderPast && Aquarium.listFish.get(i).pos_x < getX() + borderPast && Aquarium.listFish.get(i).pos_y > getY() - borderPast && Aquarium.listFish.get(i).pos_y < getY() + borderPast) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
         Past past = this;
-        Aquarium.removeFromListPast(past);
-       
+        Aquarium.removeFromListPast(past);   
         CompId = Aquarium.listFish.get(i).getId();
         for (int j = 0; j < Aquarium.listFish.size(); j++) {
           if (Aquarium.listFish.get(j).getId() != CompId)
-            Aquarium.listFish.get(j).tqt = false;
-            chrono = 10000;
+            Aquarium.listFish.get(j).move = false;
+            chrono = chrono;
         }
         
       }

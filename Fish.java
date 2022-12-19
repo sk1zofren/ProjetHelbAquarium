@@ -5,47 +5,40 @@ import javax.swing.ImageIcon;
 
 public abstract class Fish {
 
-    protected String colors; // TODO devra etre supprimer car pas utiliser
+    
     private final Image fishImage;
-    private int id = 0; // TODO devra etre supprimer car pas utiliser
-    protected int pos_x; // coordoneé X du poisson
-    protected int pos_y; // coordoneé Y du poisson
-    protected int target_x; // coordoneé X de la cible du poisson
-    protected int target_y; // coordoneé Y de la cible du poisson
-    protected int newTarget_X; // nouvelle coordoneé X de la cible du poisson
-    protected int newTarget_Y; // nouvelle coordoneé Y de la cible du poisson
-    protected boolean touchOb = false; // boolean qui s'active si on touche un bord
-    protected int departureX; // TODO risque d'eter supprimer car non utiliser
-    protected int departureY; // TODO risque d'eter supprimer car non utiliser
-    protected int speed;
-    protected int speedMax=99;
-    protected int speedBasic=50; 
-    protected int cpt=speed;
-    protected int limite=100;
-    protected boolean tqt=true;
-    static boolean activeInsectivor=false;
-    
-    
+    private int id = 0; // id which identifies each fish
+    protected int pos_x; // fish X coordinate
+    protected int pos_y; // fish Y coordinate
+    protected int target_x; // fish target x coordinate
+    protected int target_y; // fish target y coordinate
+    protected int newTarget_X; // new fish target x coordinate
+    protected int newTarget_Y; // new fish target y coordinate
+    protected boolean touchOb = false; // boolean that is activated if an edge is touched
+    protected int speed; // speed of fish
+    protected int speedMax=99; // max speed of fish
+    protected int speedBasic=50; // basic speed of fish
+    protected int cpt=speed; // counter for the timer
+    protected int limit=100; // limit for the timer
+    protected boolean move=true; // when it is equal to true, the fish can move
+    private int screenBorder =2; // screen border
+    private int borderObstacle = 15; // the outline of the obstacles
+   static int screenLimitLeft=1; // the screen limit left
+   
 
-    public Fish(String colors, String nameImage, int id,int speed) {
+    public Fish(String nameImage, int id,int speed) {
 
         ImageIcon iib = new ImageIcon(nameImage);
-        fishImage = iib.getImage();
-        this.colors = colors;
+        fishImage = iib.getImage(); 
         this.id = id;
         this.speed =speed;
-        pos_x = (int)(1 + (Math.random() * (Aquarium.getTaille()))); // -1 c'est pour eviter que le poisson appraisse directemet dans les bords
-        pos_y = (int)(1 + (Math.random() * (Aquarium.getTaille())));
+        pos_x = (int)(screenLimitLeft + (Math.random() * (Aquarium.getheight()))); 
+        pos_y = (int)(screenLimitLeft + (Math.random() * (Aquarium.getheight())));
 
     }
 
     public Image getFish() {
         return fishImage;
-    }
-
-    // TODO devra etre supprimer car pas utiliser
-    public String getColors() {
-        return colors;
     }
 
     public int getX() {
@@ -56,21 +49,11 @@ public abstract class Fish {
         return pos_y;
     }
 
-    // TODO les deux méthodes setx et setY ne me seront pas utile donc je devrais bientot les supprimer  
-    public void setX(int newX) {
-        pos_x = newX;
-    }
-
-    public void setY(int newY) {
-        pos_y = newY;
-    }
-
-    // TODO devra etre supprimer car pas utiliser
     public int getId() {
         return id;
     }
 
-    private void move() {
+    private void move() { // the method how to move fish
 
         ArrayList < Integer > x_moveOptions = new ArrayList < Integer > ();
         ArrayList < Integer > y_moveOptions = new ArrayList < Integer > ();
@@ -94,53 +77,51 @@ public abstract class Fish {
 
         double min = Collections.min(distances);
         int min_index = distances.indexOf(min);
-
         pos_x = x_moveOptions.get(min_index);
         pos_y = y_moveOptions.get(min_index);
     }
 
-    private boolean isValidPosition(int pos_x, int pos_y) { // savoir si il sera dans le board et donc ici je met la position des o
-        // objets qu'il ne doit pas toucher comme les obstacles
+    private boolean isValidPosition(int pos_x, int pos_y) { 
+       
 
         boolean res = true;
-        if (pos_y >= Aquarium.getHeights() - 2) {
+        if (pos_y >= Aquarium.getHeights() - screenBorder) {
             res = false;
         }
 
-        if (pos_y < 2) {
+        if (pos_y < screenBorder) {
             res = false;
         }
-
-        // TODO demander au prof si ce code est de la duplication de code à et vérifier si c'est assez précis et grand comme obstacle
+     
         for (int j = 0; j < Aquarium.listDeco.size(); j++) {
 
-            if (pos_y >= Aquarium.listDeco.get(j).getY() - 15 && pos_y <= Aquarium.listDeco.get(j).getY() + 15 && pos_x == Aquarium.listDeco.get(j).getX() + 15) {
+            if (pos_y >= Aquarium.listDeco.get(j).getY() - borderObstacle && pos_y <= Aquarium.listDeco.get(j).getY() + borderObstacle && pos_x == Aquarium.listDeco.get(j).getX() + borderObstacle) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_y >= Aquarium.listDeco.get(j).getY() - 15 && pos_y <= Aquarium.listDeco.get(j).getY() + 15 && pos_x == Aquarium.listDeco.get(j).getX() - 15) {
+            if (pos_y >= Aquarium.listDeco.get(j).getY() - borderObstacle && pos_y <= Aquarium.listDeco.get(j).getY() + borderObstacle && pos_x == Aquarium.listDeco.get(j).getX() - borderObstacle) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_x >= Aquarium.listDeco.get(j).getX() - 15 && pos_x <= Aquarium.listDeco.get(j).getX() + 15 && pos_y == Aquarium.listDeco.get(j).getY() + 15) {
+            if (pos_x >= Aquarium.listDeco.get(j).getX() - borderObstacle && pos_x <= Aquarium.listDeco.get(j).getX() + borderObstacle && pos_y == Aquarium.listDeco.get(j).getY() + borderObstacle) {
                 res = false;
                 touchOb = true;
             }
 
-            if (pos_x >= Aquarium.listDeco.get(j).getX() - 15 && pos_x <= Aquarium.listDeco.get(j).getX() + 15 && pos_y == Aquarium.listDeco.get(j).getY() - 15) {
+            if (pos_x >= Aquarium.listDeco.get(j).getX() - borderObstacle && pos_x <= Aquarium.listDeco.get(j).getX() + borderObstacle && pos_y == Aquarium.listDeco.get(j).getY() - borderObstacle) {
                 res = false;
                 touchOb = true;
             }
 
         }
 
-        if (pos_x >= Aquarium.getLenghts() - 2) {
+        if (pos_x >= Aquarium.getLenghts() - screenBorder) {
             res = false;
         }
 
-        if (pos_x < 2) {
+        if (pos_x < screenBorder) {
             res = false;
         }
         return res;
@@ -152,47 +133,37 @@ public abstract class Fish {
         return Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
     }
 
-    public void insectivor(){
-        double distanceDepart= Integer.MAX_VALUE;
-        for (int i = 0; i < Aquarium.listFish.size(); i++) {
-          int x_dist = Aquarium.listFish.get(i).pos_x-this.pos_x;
-          int y_dist = Aquarium.listFish.get(i).pos_y-this.pos_y;  
-          double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2)); 
-          if(distance < distanceDepart && Aquarium.listFishFriend.get(i).pos_x != this.pos_x ){  
-            newTarget_X = Aquarium.listFish.get(i).pos_x;
-            newTarget_Y = Aquarium.listFish.get(i).pos_y;
-            distanceDepart = distance;
-            
-          }  
-        }
-      }
+
+    private void reproduction(){ //the method of reproduction 
+
+        for (int j = 0; j < Aquarium.listFish.size(); j++) {          
+            if( this.hashCode()!= Aquarium.listFish.get(j).hashCode() && Aquarium.listFish.get(j).getId() == this.getId() && Aquarium.listFish.get(j).pos_x == this.pos_x && Aquarium.listFish.get(j).pos_y == this.pos_y  ){ 
+                Fish fish = this;
+                Aquarium.removeFromListFish(fish);  
+                Aquarium.removeFromListFish(Aquarium.listFish.get(j));   
+                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));  
+                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));
+                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));        
+            }
+    }
+    }
 
     public void update() {
 
-        if(tqt){
+        if(move){
         for (int i = 0; i < Aquarium.listFish.size(); i++) {     
-            if(Aquarium.listFish.get(i).cpt>limite){ 
+            if(Aquarium.listFish.get(i).cpt>limit){ 
                 Aquarium.listFish.get(i).move(); 
                 Aquarium.listFish.get(i).cpt=Aquarium.listFish.get(i).speed; 
             }else{
                 cpt++;
             }
         }
-        }
-        if(activeInsectivor){
-            insectivor();
+
         }
 
-        for (int j = 0; j < Aquarium.listFish.size(); j++) {          
-                if( this.hashCode()!= Aquarium.listFish.get(j).hashCode() && Aquarium.listFish.get(j).getColors().equals(this.getColors()) && Aquarium.listFish.get(j).pos_x == this.pos_x && Aquarium.listFish.get(j).pos_y == this.pos_y  ){ 
-                    Fish fish = this;
-                    Aquarium.removeFromListFish(fish);  
-                    Aquarium.removeFromListFish(Aquarium.listFish.get(j));   
-                    Aquarium.listFish.add((new FishBlue("orange", "Images/FishRed.png",0, 10)));  
-                    Aquarium.listFish.add((new FishBlue("orange","Images/FishRed.png",0, 10)));
-                    Aquarium.listFish.add((new FishBlue("orange","Images/FishRed.png",0, 10)));        
-                }
-        }
+        reproduction();
+      
        
 
     }

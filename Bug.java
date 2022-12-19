@@ -1,49 +1,43 @@
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
 public class Bug {
 
-      
-    private final Image BugImage;
-    private  int x =0;
-    private  int y=0;
-    private int bordure =1;
-    private String name;
-    private static int chrono5=10000;
+    private  int x =0; // x coordinate
+    private  int y=0; // y coordinate
+    private String name; // name of insect type
+    private static int chrono5=10000; // chrono for timer
+    private int chronoB= 9999; // chrono bonus speed for butterfly
+    private int chronoC = 8888; // chrono bonus speed for cockroach
+    private int chronoL = 7777; // chrono bonus speed for ladybug
+    private int borderBug =6; // the outline of the bug
+    private int speedBonus = 99; // bonus speed
+    private int basicSpeed=50; // basic speed
     
     
    
-    public Bug(String nameImage ,String name) {
-        ImageIcon iib = new ImageIcon(nameImage);
-        BugImage = iib.getImage();
-        x = (int) (Math.random()*Aquarium.getTaille()-bordure); // -1 c'est pour eviter que le poisson appraisse directemet dans les bords
-        y = (int) (Math.random()*Aquarium.getTaille()-bordure);
-        this.name = name;
+    public Bug(String name) {
+       
+      x = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getheight()))); 
+      y = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getheight())));
+      this.name = name;
        
     }
 
-
-    public Image getBug(){    
-        return BugImage;
-        }
-
      public  int getX(){
-            return x;
+      return x;
     }
         
      public int getY(){
-        return y;
-           }
+      return y;
+    }
            
        public int getDuree(){
         if(getName().equals("Butterfly")){
-            chrono5=9999;
+            chrono5=chronoB;
         }
         if(getName().equals("Cockroach")){
-            chrono5=8888;
+            chrono5=chronoC;
         }
         if(getName().equals("LadyBug")){
-            chrono5=7777;
+            chrono5=chronoL;
         }
        
         return chrono5;
@@ -57,25 +51,25 @@ public class Bug {
 
      public void update(){
 
-      if(chrono5<10000){
+      if(chrono5<chrono5){ // the departure of chrono
         chrono5--;
       }
      
         
-if(chrono5<0){
+if(chrono5<0){ // when the chrono is below 0 we reset the base speed
     for (int j = 0; j < Aquarium.listFish.size(); j++) {
-        if ( Aquarium.listFish.get(j).speed == 99) {
-        Aquarium.listFish.get(j).speed = 50;
+        if ( Aquarium.listFish.get(j).speed == speedBonus) {
+        Aquarium.listFish.get(j).speed = basicSpeed;
       }
 
       }
 
     }         
-        for (int i = 0; i < Aquarium.listFish.size(); i++) {  
-          if (Aquarium.listFish.get(i).pos_x > getX() - 6 && Aquarium.listFish.get(i).pos_x < getX() + 6 && Aquarium.listFish.get(i).pos_y > getY() - 6 && Aquarium.listFish.get(i).pos_y < getY() + 6) { // TODO je fais sa car vu que je travaille en pixelle, la prob que leurs coordonee se touche est très faible, duplication de code ? 
+        for (int i = 0; i < Aquarium.listFish.size(); i++) {   // when a fish touches an insect, the timer is triggered
+          if (Aquarium.listFish.get(i).pos_x > getX() - borderBug && Aquarium.listFish.get(i).pos_x < getX() + borderBug && Aquarium.listFish.get(i).pos_y > getY() - borderBug && Aquarium.listFish.get(i).pos_y < getY() + borderBug) {  
             Bug bug = this;  
             Aquarium.removeFromListBug(bug);  
-            Aquarium.listFish.get(i).speed=99; 
+            Aquarium.listFish.get(i).speed=speedBonus; 
             chrono5=this.getDuree(); 
              
           }  
