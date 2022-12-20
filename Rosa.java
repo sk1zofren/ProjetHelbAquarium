@@ -1,15 +1,11 @@
-public class Rosa {
-    
-    private  int x =0; // x coordinate
-    private  int y=0; // y coordinate
+public class Rosa extends GameObjectElement {
+  
     private int CompId; // to compare id
     
 
     public Rosa() {
        
        
-       x = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
-        y = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
       
        
     }
@@ -18,14 +14,7 @@ public class Rosa {
 
  
 
-    public int getX(){
-        return x;
-        }
     
-        public int getY(){
-        return y;
-       }
-
 
 
        public void update(){

@@ -19,7 +19,7 @@ public class Aquarium extends JPanel implements ActionListener {
   private static int DELAY = 5; // number of milliseconds elapsed between each action (frame rate)
   static String temperature = "tied"; // Aquarium temperature
   static int numberOfDeco = 0; // number of Deco
-  private Timer timer;
+  private Timer timer; // the timer
   static ArrayList < Fish > listFish = new ArrayList < Fish > (); // fish list
   static ArrayList < Fish > listFishPrey = new ArrayList < Fish > (); // fish prey list
   static ArrayList < Fish > listFishFriend = new ArrayList < Fish > (); // fish friend list
@@ -29,12 +29,16 @@ public class Aquarium extends JPanel implements ActionListener {
   static ArrayList < Decoration > listDeco = new ArrayList < Decoration > (); // list of deco
   static ArrayList < Past > listPast = new ArrayList < Past > (); // past list
 
-  private Image ladyBugImage;
-  private Image cockroachBugImage;
-  private Image butterFlyBugImage;
+  private Image ladyBugImage;             
+  private Image cockroachBugImage;        
+  private Image butterFlyBugImage;        
   private Image decoImage;
-  private Image pastImage;
-  private Image rosaImage; 
+  private Image pastImage;                ////////////////////////////////////
+  private Image rosaImage;                /////// All images ////////////////
+  private Image fishOrange;               ///////////////////////////////////
+  private Image fishRed;
+  private Image fishBlue;
+  private Image fishPurple;
 
   public static int getheight() { // method to have the size of the aquarium
     return LENGHT / DOT_SIZE;
@@ -52,7 +56,7 @@ public class Aquarium extends JPanel implements ActionListener {
     initBoard();
   }
 
-  private void initBoard() {
+  private void initBoard() { // aquarium initialization
 
     addKeyListener(new TAdapter());
     if (temperature.equals("cold")) {
@@ -67,23 +71,24 @@ public class Aquarium extends JPanel implements ActionListener {
     initGame();
   }
 
-  private void addFish() { // method to add fish in the aquarium
+  private void addFish() { // method to add fish in the list
 
-    listFish.add(new FishBlue("Images/FishOrange.png", 0, 10));
-    listFish.add(new FishPurple("Images/FishRed.png", 0, 10));
-    listFish.add(new FishRed( "Images/FishRed.png", 0, 10));
-    listFish.add(new FishOrange( "Images/FishRed.png", 0, 10));
+    listFish.add(new FishBlue());
+    listFish.add(new FishPurple());
+    listFish.add(new FishRed());
+    listFish.add(new FishOrange());
+    
 
   }
 
-  private void addDeco() { // method to add deco in the aquarium
-    for (int i = 0; i < 0; i++) {
+  private void addDeco() { // method to add deco in the list
+    for (int i = 0; i < 10; i++) {
       listDeco.add(new Decoration());
       numberOfDeco++;
     }
   }
 
-  private void addBug() { // method to add bug in the aquarium
+  private void addBug() { // method to add bug in the list
     for (int i = 0; i < 0; i++) {
       listBug.add(new Bug("Butterfly"));
       listBug.add(new Bug("Cockroach"));
@@ -91,19 +96,19 @@ public class Aquarium extends JPanel implements ActionListener {
     }
   }
 
-  private void addPast() { // method to add past in the aquarium
+  private void addPast() { // method to add past in the liste
     for (int i = 0; i < 0; i++) {
       listPast.add(new Past());
     }
   }
 
-  private void addRosa() { // method to add pink past in the aquarium
-    for (int i = 0; i < 100; i++) {
+  private void addRosa() { // method to add pink past in the liste
+    for (int i = 0; i < 0; i++) {
       listRosa.add(new Rosa());
     }
   }
 
-  public static ArrayList < Fish > getlistFishPrey() {
+  public static ArrayList < Fish > getlistFishPrey() { // method to have a prey list fish
     for (int i = 0; i < listFish.size(); i++) {
       if (listFish.get(i).getId() != 4) {
         listFishPrey.add(listFish.get(i));
@@ -112,7 +117,7 @@ public class Aquarium extends JPanel implements ActionListener {
     return listFishPrey;
   }
 
-  public static ArrayList < Fish > getlistFishFriend() {
+  public static ArrayList < Fish > getlistFishFriend() { // method to have a friend fish list
     for (int i = 0; i < listFish.size(); i++) {
       if (listFish.get(i).getId() != 4 && listFish.get(i).getId() != 1) {
         listFishFriend.add(listFish.get(i));
@@ -121,7 +126,7 @@ public class Aquarium extends JPanel implements ActionListener {
     return listFishFriend;
   }
 
-  public static ArrayList < Fish > getlistFishRed() {
+  public static ArrayList < Fish > getlistFishRed() { //  method to have a red fish list
     for (int i = 0; i < listFish.size(); i++) {
       if (listFish.get(i).getId() == 4) {
         listFishRed.add(listFish.get(i));
@@ -130,7 +135,7 @@ public class Aquarium extends JPanel implements ActionListener {
     return listFishRed;
   }
 
-  public static ArrayList < Fish > getlistFish() {
+  public static ArrayList < Fish > getlistFish() { // method to have a list fish 
     return listFish;
   }
 
@@ -182,7 +187,7 @@ public class Aquarium extends JPanel implements ActionListener {
     }
   }
 
-  private void loadImages() {
+  private void loadImages() { // method to load all images
 
     ImageIcon iia = new ImageIcon("Image/ladyBug.png");
         ladyBugImage = iia.getImage();
@@ -201,11 +206,32 @@ public class Aquarium extends JPanel implements ActionListener {
     
     ImageIcon iif = new ImageIcon("Image/rose.png");
        rosaImage = iif.getImage();
+
+    ImageIcon iig = new ImageIcon("Image/fishOrange.png");
+       fishOrange = iig.getImage();
+
+    ImageIcon iih = new ImageIcon("Image/fishRed.png");
+       fishRed = iih.getImage();
+
+    ImageIcon iii = new ImageIcon("Image/fishBlue.png");
+       fishBlue = iii.getImage();
+
+    ImageIcon iij = new ImageIcon("Image/fishPurple.png");
+       fishPurple = iij.getImage();
 }
 
-  private void doDrawing(Graphics g) {
+  private void doDrawing(Graphics g) { // method that draw the image
     for (int i = 0; i < listFish.size(); i++) {
-      g.drawImage(listFish.get(i).getFish(), listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
+      if(listFish.get(i).getId()==1){
+        g.drawImage(fishOrange, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
+      }else if (listFish.get(i).getId()==2){
+        g.drawImage(fishBlue, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
+      }else if (listFish.get(i).getId()==3){
+        g.drawImage(fishPurple, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
+      }else if(listFish.get(i).getId()==4){
+        g.drawImage(fishRed, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
+      }
+      
     }
 
     for (int i = 0; i < listDeco.size(); i++) {
@@ -236,33 +262,31 @@ public class Aquarium extends JPanel implements ActionListener {
     repaint();
   }
 
-  public static void removeFromListFish(Fish fish) {
+  public static void removeFromListFish(Fish fish) { // method to remove a fish in the list
     listFish.remove(fish);
   }
 
-  public static void removeFromListRosa(Rosa rosa) {
+  public static void removeFromListRosa(Rosa rosa) { // method to remove a rosa in the list
     listRosa.remove(rosa);
   }
 
-  public static void removeFromListFishPray(Fish fish) {
+  public static void removeFromListFishPray(Fish fish) { // method to remove a fish in the list pray
     listFishPrey.remove(fish);
   }
 
-  public static void removeFromListBug(Bug bug) {
+  public static void removeFromListBug(Bug bug) { // method to remove a bug in the list bug
     listBug.remove(bug);
   }
 
-  public static void removeFromListPast(Past past) {
+  public static void removeFromListPast(Past past) { // method to remove a past in the list past
     listPast.remove(past);
   }
-  public static void addFromListFish(Fish fish) {
-    listFish.add(fish);
-  }
+  
 
   private class TAdapter extends KeyAdapter {
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { // keyboard key interaction
 
       int key = e.getKeyCode();
 
@@ -318,16 +342,16 @@ public class Aquarium extends JPanel implements ActionListener {
         int x = (int)(1 + (Math.random() * (4)));
         switch (x) {
         case 1:
-          listFish.add(new FishBlue("Images/FishRed.png", 0, 10));
+          listFish.add(new FishBlue());
           break;
         case 2:
-          listFish.add(new FishRed( "Images/FishRed.png", 0, 10));
+          listFish.add(new FishRed());
           break;
         case 3:
-          listFish.add(new FishOrange("Images/FishRed.png", 0, 10));
+          listFish.add(new FishOrange());
           break;
         case 4:
-          listFish.add(new FishPurple("Images/FishRed.png", 0, 10));
+          listFish.add(new FishPurple());
           break;
 
         default:

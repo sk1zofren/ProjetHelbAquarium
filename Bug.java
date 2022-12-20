@@ -1,7 +1,5 @@
-public class Bug {
+public class Bug extends GameObjectElement {
 
-    private  int x =0; // x coordinate
-    private  int y=0; // y coordinate
     private String name; // name of insect type
     private static int chrono5=10000; // chrono for timer
     private int chronoB= 9999; // chrono bonus speed for butterfly
@@ -15,18 +13,9 @@ public class Bug {
    
     public Bug(String name) {
        
-      x = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getheight()))); 
-      y = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getheight())));
+     
       this.name = name;
        
-    }
-
-     public  int getX(){
-      return x;
-    }
-        
-     public int getY(){
-      return y;
     }
            
        public int getDuree(){

@@ -1,43 +1,38 @@
 public class FishRed extends Fish  {
 
-  public static int chrono=20; 
-  public static int chrono2=20; 
-  public int chrono3=1;
-  public int chrono4=1;
-  
- 
-  public FishRed( String nameImage,int id,int speed) {
-    super("Image/FishRed.png",4,80);
-    newTarget_X=0; // au debut mon poisson va au il veut (null )
-    newTarget_Y=0; // au debut mon poisson va au il veut ( null)
+   private int tempChangment = 20;
+  public FishRed() {
+    super(4,80);
+    newTarget_X=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getHeights()))); // random target
+    newTarget_Y=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); // random target
    
 
   
   }
 
 
-  public void manger(){
+  public void eat(){ // methode that eat the prey
     for (int j = 0; j < Aquarium.listFishPrey.size(); j++) {  
       if(pos_x == Aquarium.listFishPrey.get(j).pos_x && pos_y == Aquarium.listFishPrey.get(j).pos_y ){
         Fish fish = Aquarium.listFishPrey.get(j);
         Aquarium.removeFromListFish(fish);
         Aquarium.removeFromListFishPray(fish);   
-         recherch();
+        research();
       }
     } 
   }
 
-  public void recherch(){
-    double distanceDepart= Integer.MAX_VALUE;
+  public void research(){ // method that searches for the nearest fish in the prey list
+    double startDepart= Integer.MAX_VALUE;
     for (int j = 0; j < Aquarium.listFishPrey.size(); j++) {  
       int x_dist = Aquarium.listFishPrey.get(j).pos_x-pos_x;
       int y_dist = Aquarium.listFishPrey.get(j).pos_y-pos_y; 
      
       double distance = Math.sqrt(Math.pow(x_dist, 2)+Math.pow(y_dist, 2));
-      if(distance < distanceDepart){  
+      if(distance < startDepart){  
         newTarget_X = Aquarium.listFishPrey.get(j).pos_x;
         newTarget_Y = Aquarium.listFishPrey.get(j).pos_y;
-        distanceDepart = distance;     
+        startDepart = distance;     
       }  
     }
   }
@@ -49,13 +44,13 @@ public class FishRed extends Fish  {
     
     target_x=newTarget_X;
     target_y=newTarget_Y;   
-    recherch();
-    manger(); 
-    if(Aquarium.temperature.equals("cold")){
-      speed = speedBasic -20;
+    research();
+    eat(); 
+    if(Aquarium.temperature.equals("cold")){ // temperature change cold
+      speed = speedBasic -tempChangment;
     }
-    if(Aquarium.temperature.equals("hard")){
-      speed = speedBasic +20;
+    if(Aquarium.temperature.equals("hard")){ // temperature change hard
+      speed = speedBasic +tempChangment;
     } 
     
   }

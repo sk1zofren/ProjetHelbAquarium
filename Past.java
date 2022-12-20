@@ -1,8 +1,7 @@
-public class Past {
+public class Past extends GameObjectElement {
 
 
-  private int x = 0; // x coordinate
-  private int y = 0; // y coordinate
+
   static int borderPast=6;
   private static int chrono = 10000; // chrono for timer
   private int CompId; // to compare id
@@ -10,8 +9,6 @@ public class Past {
   public Past() {
 
     
-    x = (int)(Math.random() * Aquarium.getheight() - Fish.screenLimitLeft);
-    y = (int)(Math.random() * Aquarium.getheight() - Fish.screenLimitLeft);
 
   }
 
@@ -19,14 +16,6 @@ public class Past {
 
   public int getDuree(){
     return chrono;
-  }
-
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
   }
 
   public void update() {

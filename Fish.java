@@ -1,15 +1,11 @@
-import java.awt.Image; //!!!!!
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.ImageIcon;
 
-public abstract class Fish {
+
+public abstract class Fish extends GameObjectElement {
 
     
-    private final Image fishImage;
-    private int id = 0; // id which identifies each fish
-    protected int pos_x; // fish X coordinate
-    protected int pos_y; // fish Y coordinate
+    private int id = 0; // id which identifies each fish 
     protected int target_x; // fish target x coordinate
     protected int target_y; // fish target y coordinate
     protected int newTarget_X; // new fish target x coordinate
@@ -26,27 +22,11 @@ public abstract class Fish {
    static int screenLimitLeft=1; // the screen limit left
    
 
-    public Fish(String nameImage, int id,int speed) {
-
-        ImageIcon iib = new ImageIcon(nameImage);
-        fishImage = iib.getImage(); 
+    public Fish(int id,int speed) {
+ 
         this.id = id;
         this.speed =speed;
-        pos_x = (int)(screenLimitLeft + (Math.random() * (Aquarium.getheight()))); 
-        pos_y = (int)(screenLimitLeft + (Math.random() * (Aquarium.getheight())));
 
-    }
-
-    public Image getFish() {
-        return fishImage;
-    }
-
-    public int getX() {
-        return pos_x;
-    }
-
-    public int getY() {
-        return pos_y;
     }
 
     public int getId() {
@@ -141,9 +121,9 @@ public abstract class Fish {
                 Fish fish = this;
                 Aquarium.removeFromListFish(fish);  
                 Aquarium.removeFromListFish(Aquarium.listFish.get(j));   
-                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));  
-                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));
-                Aquarium.listFish.add((new FishBlue("Images/FishRed.png",0, 10)));        
+                Aquarium.listFish.add((new FishBlue()));  
+                Aquarium.listFish.add((new FishBlue()));
+                Aquarium.listFish.add((new FishBlue()));        
             }
     }
     }
