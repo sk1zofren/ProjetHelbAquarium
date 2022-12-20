@@ -29,17 +29,16 @@ public class Aquarium extends JPanel implements ActionListener {
   static ArrayList < Decoration > listDeco = new ArrayList < Decoration > (); // list of deco
   static ArrayList < Past > listPast = new ArrayList < Past > (); // past list
 
-  private Image ladyBugImage;             
-  private Image cockroachBugImage;        
-  private Image butterFlyBugImage;        
+  private Image ladyBugImage;
+  private Image cockroachBugImage;
+  private Image butterFlyBugImage;
   private Image decoImage;
-  private Image pastImage;                ////////////////////////////////////
-  private Image rosaImage;                /////// All images ////////////////
-  private Image fishOrange;               ///////////////////////////////////
+  private Image pastImage; ////////////////////////////////////
+  private Image rosaImage; /////// All images ////////////////
+  private Image fishOrange; ///////////////////////////////////
   private Image fishRed;
   private Image fishBlue;
   private Image fishPurple;
-
 
   public static int getLenghts() { // method to have the lenght of the aquarium
     return LENGHT;
@@ -78,7 +77,6 @@ public class Aquarium extends JPanel implements ActionListener {
     listFish.add(new FishPurple());
     listFish.add(new FishRed());
     listFish.add(new FishOrange());
-    
 
   }
 
@@ -140,7 +138,7 @@ public class Aquarium extends JPanel implements ActionListener {
     return listFish;
   }
 
-  public static int getPas() {  
+  public static int getPas() {
     return DOT_SIZE;
   }
 
@@ -191,48 +189,48 @@ public class Aquarium extends JPanel implements ActionListener {
   private void loadImages() { // method to load all images
 
     ImageIcon iia = new ImageIcon("Image/ladyBug.png");
-        ladyBugImage = iia.getImage();
-    
+    ladyBugImage = iia.getImage();
+
     ImageIcon iib = new ImageIcon("Image/cockroach.png");
-        cockroachBugImage = iib.getImage();
-    
+    cockroachBugImage = iib.getImage();
+
     ImageIcon iic = new ImageIcon("Image/pap.png");
-        butterFlyBugImage = iic.getImage();
+    butterFlyBugImage = iic.getImage();
 
     ImageIcon iid = new ImageIcon("Image/Dec.png");
-        decoImage = iid.getImage();
+    decoImage = iid.getImage();
 
     ImageIcon iie = new ImageIcon("Image/past.png");
-        pastImage = iie.getImage();
-    
+    pastImage = iie.getImage();
+
     ImageIcon iif = new ImageIcon("Image/rose.png");
-       rosaImage = iif.getImage();
+    rosaImage = iif.getImage();
 
     ImageIcon iig = new ImageIcon("Image/fishOrange.png");
-       fishOrange = iig.getImage();
+    fishOrange = iig.getImage();
 
     ImageIcon iih = new ImageIcon("Image/fishRed.png");
-       fishRed = iih.getImage();
+    fishRed = iih.getImage();
 
     ImageIcon iii = new ImageIcon("Image/fishBlue.png");
-       fishBlue = iii.getImage();
+    fishBlue = iii.getImage();
 
     ImageIcon iij = new ImageIcon("Image/fishPurple.png");
-       fishPurple = iij.getImage();
-}
+    fishPurple = iij.getImage();
+  }
 
   private void doDrawing(Graphics g) { // method that draw the image
     for (int i = 0; i < listFish.size(); i++) {
-      if(listFish.get(i).getId()==1){
+      if (listFish.get(i).getId() == 1) {
         g.drawImage(fishOrange, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
-      }else if (listFish.get(i).getId()==2){
+      } else if (listFish.get(i).getId() == 2) {
         g.drawImage(fishBlue, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
-      }else if (listFish.get(i).getId()==3){
+      } else if (listFish.get(i).getId() == 3) {
         g.drawImage(fishPurple, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
-      }else if(listFish.get(i).getId()==4){
+      } else if (listFish.get(i).getId() == 4) {
         g.drawImage(fishRed, listFish.get(i).getX() * DOT_SIZE, listFish.get(i).getY() * DOT_SIZE, this);
       }
-      
+
     }
 
     for (int i = 0; i < listDeco.size(); i++) {
@@ -240,13 +238,13 @@ public class Aquarium extends JPanel implements ActionListener {
     }
 
     for (int i = 0; i < listBug.size(); i++) {
-        if(listBug.get(i).getName().equals("LadyBug")){
-      g.drawImage(ladyBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
-        } else if (listBug.get(i).getName().equals("Cockroach")){
-            g.drawImage(cockroachBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
-        } else if (listBug.get(i).getName().equals("Butterfly")){
-            g.drawImage(butterFlyBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
-        }
+      if (listBug.get(i).getName().equals("LadyBug")) {
+        g.drawImage(ladyBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
+      } else if (listBug.get(i).getName().equals("Cockroach")) {
+        g.drawImage(cockroachBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
+      } else if (listBug.get(i).getName().equals("Butterfly")) {
+        g.drawImage(butterFlyBugImage, listBug.get(i).getX() * DOT_SIZE, listBug.get(i).getY() * DOT_SIZE, this);
+      }
     }
 
     for (int i = 0; i < listPast.size(); i++) {
@@ -282,7 +280,6 @@ public class Aquarium extends JPanel implements ActionListener {
   public static void removeFromListPast(Past past) { // method to remove a past in the list past
     listPast.remove(past);
   }
-  
 
   private class TAdapter extends KeyAdapter {
 
@@ -291,7 +288,7 @@ public class Aquarium extends JPanel implements ActionListener {
 
       int key = e.getKeyCode();
 
-      if ((key == KeyEvent.VK_0)) {  
+      if ((key == KeyEvent.VK_0)) {
         listFish.removeAll(listFish);
         listBug.removeAll(listBug);
         listDeco.removeAll(listDeco);
@@ -323,7 +320,7 @@ public class Aquarium extends JPanel implements ActionListener {
         addBug();
       }
 
-      if ((key == KeyEvent.VK_5)) { 
+      if ((key == KeyEvent.VK_5)) {
         addPast();
       }
 

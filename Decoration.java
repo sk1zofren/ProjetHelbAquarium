@@ -1,13 +1,12 @@
 public class Decoration extends GameObjectElement {
 
     public Decoration() {
-       super();
-       
+      super();
+  
     }
-    
-    public void update(){
-
-       
+  
+    public void update() {
+  
     }
-
-}
+  
+  }
