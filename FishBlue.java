@@ -3,8 +3,7 @@ public class FishBlue extends Fish {
   public FishBlue() {
 
     super(2,90);
-    newTarget_X=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getHeights())));
-    newTarget_Y=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); 
+   
   
        
     }

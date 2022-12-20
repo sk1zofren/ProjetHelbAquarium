@@ -4,8 +4,6 @@ public class FishPurple extends Fish {
 
   public FishPurple() {
     super(3,50);    
-    newTarget_X=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getHeights()))); // random target
-    newTarget_Y=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); //random target
    
       
   }

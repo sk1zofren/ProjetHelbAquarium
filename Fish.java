@@ -19,14 +19,16 @@ public abstract class Fish extends GameObjectElement {
     protected boolean move=true; // when it is equal to true, the fish can move
     private int screenBorder =2; // screen border
     private int borderObstacle = 15; // the outline of the obstacles
-   static int screenLimitLeft=1; // the screen limit left
+    static int screenLimitLeft=1; // the screen limit left
+    
    
 
     public Fish(int id,int speed) {
  
         this.id = id;
         this.speed =speed;
-
+        newTarget_X=(int) (screenLimitLeft + (Math.random() * (Aquarium.getHeights()))); // random target
+        newTarget_Y=(int) (screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); // random target
     }
 
     public int getId() {
@@ -61,7 +63,7 @@ public abstract class Fish extends GameObjectElement {
         pos_y = y_moveOptions.get(min_index);
     }
 
-    private boolean isValidPosition(int pos_x, int pos_y) { 
+    private boolean isValidPosition(int pos_x, int pos_y) { // to find a valid position
        
 
         boolean res = true;

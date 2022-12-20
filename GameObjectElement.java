@@ -5,8 +5,8 @@ public class GameObjectElement {
 
 
     public GameObjectElement(){
-    pos_x = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
-    pos_y = (int) (Math.random()*Aquarium.getheight()-Fish.screenLimitLeft);
+    pos_x = (int) (Math.random()*Aquarium.getHeights()-Fish.screenLimitLeft);
+    pos_y = (int) (Math.random()*Aquarium.getLenghts()-Fish.screenLimitLeft);
     }
 
     

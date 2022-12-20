@@ -3,11 +3,7 @@ public class FishRed extends Fish  {
    private int tempChangment = 20;
   public FishRed() {
     super(4,80);
-    newTarget_X=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getHeights()))); // random target
-    newTarget_Y=(int) (Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); // random target
    
-
-  
   }
 
 

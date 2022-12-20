@@ -40,9 +40,6 @@ public class Aquarium extends JPanel implements ActionListener {
   private Image fishBlue;
   private Image fishPurple;
 
-  public static int getheight() { // method to have the size of the aquarium
-    return LENGHT / DOT_SIZE;
-  }
 
   public static int getLenghts() { // method to have the lenght of the aquarium
     return LENGHT;
@@ -77,12 +74,16 @@ public class Aquarium extends JPanel implements ActionListener {
     listFish.add(new FishPurple());
     listFish.add(new FishRed());
     listFish.add(new FishOrange());
+    listFish.add(new FishBlue());
+    listFish.add(new FishPurple());
+    listFish.add(new FishRed());
+    listFish.add(new FishOrange());
     
 
   }
 
   private void addDeco() { // method to add deco in the list
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 0; i++) {
       listDeco.add(new Decoration());
       numberOfDeco++;
     }
@@ -103,7 +104,7 @@ public class Aquarium extends JPanel implements ActionListener {
   }
 
   private void addRosa() { // method to add pink past in the liste
-    for (int i = 0; i < 0; i++) {
+    for (int i = 0; i < 60; i++) {
       listRosa.add(new Rosa());
     }
   }
@@ -326,15 +327,15 @@ public class Aquarium extends JPanel implements ActionListener {
         addPast();
       }
 
-      if ((key == KeyEvent.VK_6)) { // TODO fonctionne pas 
+      if ((key == KeyEvent.VK_6)) { // TODO doesn't work  
 
       }
 
-      if ((key == KeyEvent.VK_7)) { // TODO fonctionne pas 
+      if ((key == KeyEvent.VK_7)) { // TODO doesn't work  
 
       }
 
-      if ((key == KeyEvent.VK_8)) { // TODO fonctionne pas 
+      if ((key == KeyEvent.VK_8)) { // TODO doesn't work 
 
       }
 

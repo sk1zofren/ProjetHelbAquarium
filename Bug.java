@@ -8,7 +8,7 @@ public class Bug extends GameObjectElement {
     private int borderBug =6; // the outline of the bug
     private int speedBonus = 99; // bonus speed
     private int basicSpeed=50; // basic speed
-    
+    private int start=0; // the start chrono
     
    
     public Bug(String name) {
@@ -18,7 +18,7 @@ public class Bug extends GameObjectElement {
        
     }
            
-       public int getDuree(){
+       public int getDuree(){ // chrono depend of the name of bug
         if(getName().equals("Butterfly")){
             chrono5=chronoB;
         }
@@ -33,7 +33,7 @@ public class Bug extends GameObjectElement {
        }  
            
     
-           public String getName(){
+           public String getName(){ 
             
             return name;
            }
@@ -45,7 +45,7 @@ public class Bug extends GameObjectElement {
       }
      
         
-if(chrono5<0){ // when the chrono is below 0 we reset the base speed
+if(chrono5<start){ // when the chrono is below 0 we reset the base speed
     for (int j = 0; j < Aquarium.listFish.size(); j++) {
         if ( Aquarium.listFish.get(j).speed == speedBonus) {
         Aquarium.listFish.get(j).speed = basicSpeed;
