@@ -17,14 +17,18 @@ public abstract class Fish extends GameObjectElement {
   protected boolean move = true; // when it is equal to true, the fish can move
   private int screenBorder = 2; // screen border
   private int borderObstacle = 15; // the outline of the obstacles
-  static int screenLimitLeft = 1; // the screen limit left
+  static int screenLimitLeft = 20; // the screen limit left
+  static boolean reprod = false; // boolean to active reproduction mode
+  static boolean insect = false; // boolean to active insect mode
+  static boolean past = false; // boolean to active past mode
 
   public Fish(int id, int speed) {
 
     this.id = id;
     this.speed = speed;
-    newTarget_X = (int)(screenLimitLeft + (Math.random() * (Aquarium.getHeights()))); // random target
+    newTarget_X = (int)(screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); // random target
     newTarget_Y = (int)(screenLimitLeft + (Math.random() * (Aquarium.getLenghts()))); // random target
+
   }
 
   public int getId() {
@@ -117,9 +121,67 @@ public abstract class Fish extends GameObjectElement {
         Fish fish = this;
         Aquarium.removeFromListFish(fish);
         Aquarium.removeFromListFish(Aquarium.listFish.get(j));
-        Aquarium.listFish.add((new FishBlue()));
-        Aquarium.listFish.add((new FishBlue()));
-        Aquarium.listFish.add((new FishBlue()));
+
+        for (int i = 0; i < 3; i++) {
+          if (this.id == 1) {
+            Aquarium.listFish.add((new FishOrange()));
+          } else if (this.id == 2) {
+            Aquarium.listFish.add((new FishBlue()));
+          } else if (this.id == 3) {
+            Aquarium.listFish.add((new FishPurple()));
+          } else if (this.id == 4) {
+            Aquarium.listFish.add((new FishRed()));
+          }
+        }
+
+      }
+    }
+  }
+
+  public void reproductionMod() { //method to find the nearest fish for reproduction
+    double startDepart = Integer.MAX_VALUE;
+    for (int i = 0; i < Aquarium.listFish.size(); i++) {
+      int x_dist = Aquarium.listFish.get(i).pos_x - pos_x;
+      int y_dist = Aquarium.listFish.get(i).pos_y - pos_y;
+      double distance = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
+      if (distance < startDepart && Aquarium.listFish.get(i).hashCode() != this.hashCode() && this.id == Aquarium.listFish.get(i).id) {
+        this.newTarget_X = Aquarium.listFish.get(i).pos_x;
+        this.newTarget_Y = Aquarium.listFish.get(i).pos_y;
+        Aquarium.listFish.get(i).newTarget_X = this.newTarget_X;
+        Aquarium.listFish.get(i).newTarget_Y = this.newTarget_Y;
+        startDepart = distance;
+
+      }
+    }
+  }
+  public void pastMod() { //method to find the nearest past
+    double startDepart = Integer.MAX_VALUE;
+    for (int i = 0; i < Aquarium.listPast.size(); i++) {
+      int x_dist = Aquarium.listPast.get(i).pos_x - pos_x;
+      int y_dist = Aquarium.listPast.get(i).pos_y - pos_y;
+      double distance = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
+      if (distance < startDepart) {
+        newTarget_X = Aquarium.listPast.get(i).pos_x;
+        newTarget_Y = Aquarium.listPast.get(i).pos_y;
+        startDepart = distance;
+
+      }
+    }
+  }
+
+  public void insectivorMod() { //method to find the nearest fish
+    double startDepart = Integer.MAX_VALUE;
+    for (int i = 0; i < Aquarium.listFish.size(); i++) {
+      int x_dist = Aquarium.listFish.get(i).pos_x - pos_x;
+      int y_dist = Aquarium.listFish.get(i).pos_y - pos_y;
+      double distance = Math.sqrt(Math.pow(x_dist, 2) + Math.pow(y_dist, 2));
+      if (distance < startDepart && Aquarium.listFish.get(i).hashCode() != this.hashCode()) {
+        this.newTarget_X = Aquarium.listFish.get(i).pos_x;
+        this.newTarget_Y = Aquarium.listFish.get(i).pos_y;
+        Aquarium.listFish.get(i).newTarget_X = this.newTarget_X;
+        Aquarium.listFish.get(i).newTarget_Y = this.newTarget_Y;
+        startDepart = distance;
+
       }
     }
   }
@@ -137,8 +199,18 @@ public abstract class Fish extends GameObjectElement {
       }
 
     }
+    if (reprod) {
+      reproductionMod();
+    }
+    if (insect) {
+      insectivorMod();
+    }
 
     reproduction();
+
+    if (past) {
+      pastMod();
+    }
 
   }
 

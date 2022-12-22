@@ -6,7 +6,7 @@ public class FishBlue extends Fish {
 
   }
 
-  public void ami() { //method to find the nearest friendly fish
+  public void friend() { //method to find the nearest friendly fish
     double startDepart = Integer.MAX_VALUE;
     for (int i = 0; i < Aquarium.listFishFriend.size(); i++) {
       int x_dist = Aquarium.listFishFriend.get(i).pos_x - pos_x;
@@ -26,7 +26,7 @@ public class FishBlue extends Fish {
     super.update();
     target_x = newTarget_X;
     target_y = newTarget_Y;
-    ami();
+    friend();
 
   }
 

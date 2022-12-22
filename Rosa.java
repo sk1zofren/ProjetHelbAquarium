@@ -10,9 +10,8 @@ public class Rosa extends GameObjectElement {
       if (Aquarium.listFish.get(i).pos_x > getX() - Past.borderPast && Aquarium.listFish.get(i).pos_x < getX() + Past.borderPast && Aquarium.listFish.get(i).pos_y > getY() - Past.borderPast && Aquarium.listFish.get(i).pos_y < getY() + Past.borderPast) {
         Rosa rosa = this;
         Aquarium.removeFromListRosa(rosa);
-        Aquarium.listFish.get(i).pos_x = (int)(1 + (Math.random() * (Aquarium.getHeights())));
-        Aquarium.listFish.get(i).pos_y = (int)(1 + (Math.random() * (Aquarium.getLenghts())));
-
+        Aquarium.listFish.get(i).pos_x = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts()-Fish.screenLimitLeft)));
+        Aquarium.listFish.get(i).pos_y = (int)(Fish.screenLimitLeft + (Math.random() * (Aquarium.getLenghts())));
       }
     }
 
